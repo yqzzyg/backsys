@@ -1,0 +1,81 @@
+server:
+  port: 9668
+  context-path: /gov_api
+  
+spring:
+  datasource:
+    #driver-class-name: com.gbase.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    
+    #本地测试环境
+    url: jdbc:mysql://192.168.1.199:3306/test?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true
+    username: root
+    password: #root_123
+    
+    #正式环境
+    #url: jdbc:mysql://10.174.20.79:3306/idecision?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true
+    #username: root
+    #password: 123456
+
+rocketmq:
+  name-server: 192.168.1.130:9876
+  producer:
+     name: my-producer
+     group: TopicTest
+     maxMessageSize: 4096
+     sendMsgTimeout: 3000
+     retryTimesWhenSendFailed: 2
+  consumer:
+     name: my-consumer
+     group: TopicTest
+     consumeMessageBatchMaxSize: 1
+
+mybatis:
+  config-location: "classpath:/mybatis-config.xml"
+  type-aliases-package: com.neusoft.mid.ec.api.domain
+  mapper-locations: ["classpath:/com/neusoft/mid/ec/api/service/**/*Repository.xml", "classpath:/me/puras/common/persistence/*Mapper.xml"]
+
+logging.level.root: INFO
+logging.level.com.neusoft.mid.ec.api.service: DEBUG
+logging.level.org.springframework.jdbc: DEBUG
+
+jedisPool:
+  redis_pwd: 1qaz!QAZ
+  redis_port: 6379
+#本地测试环境
+  redis_url: 10.10.105.30
+#正式环境
+  #redis_url: 10.174.30.59
+
+
+#redis cluster 暂时没用
+redis:
+  cache:
+    clusterNodes: 192.168.137.20:7000,192.168.137.20:7001,192.168.137.20:7002,192.168.137.20:7003,192.168.137.20:7004,192.168.137.20:7005
+    #clusterNodes: 10.102.64.3:6379
+    commandTimeout: 5
+    expireSeconds: 1800
+ 
+
+AES-KEY:
+  key1: neusoft
+  key2: yunnan
+  key3: idecision
+  
+filePath:
+  whiteIPFile: conf/whiteIPForApi.txt
+  sensitiveFile: conf/sensitiveWords.txt
+
+expired-time:
+  days: 180
+

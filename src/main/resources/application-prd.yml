@@ -1,0 +1,86 @@
+server:
+  port: 9668
+  context-path: /gov_api
+  
+spring:
+  datasource:
+    #driver-class-name: com.gbase.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    maxWait: 60000
+    minIdle: 5
+    initial-size: 2
+    max-active: 10
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    
+    #本地测试环境
+    url: jdbc:mysql://172.20.17.122:3306/govapi?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true
+    username: root
+    password: dsjj@2019!!!
+    
+    #正式环境
+    #url: jdbc:mysql://10.174.20.79:3306/idecision?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true
+    #username: root
+    #password: 123456
+
+
+mybatis:
+  config-location: "classpath:/mybatis-config.xml"
+  type-aliases-package: com.neusoft.mid.ec.api.domain
+  mapper-locations: ["classpath:/com/neusoft/mid/ec/api/service/**/*Repository.xml", "classpath:/me/puras/common/persistence/*Mapper.xml"]
+
+logging.level.root: INFO
+logging.level.com.neusoft.mid.ec.api.service: DEBUG
+logging.level.org.springframework.jdbc: DEBUG
+
+jedisPool:
+  redis_pwd: 1qaz!QAZ
+  redis_port: 6379
+#本地测试环境
+  redis_url: 10.10.105.30
+#正式环境
+  #redis_url: 10.174.30.59
+
+
+#redis cluster 暂时没用
+redis:
+  cache:
+    clusterNodes: 172.20.17.109:7000,172.20.17.109:7001,172.20.17.110:7000,172.20.17.110:7001,172.20.17.111:7000,172.20.17.111:7001
+    #clusterNodes: 10.102.64.3:6379
+    commandTimeout: 5
+    expireSeconds: 1800
+
+
+rocketmq:
+  name-server: 172.20.17.122:9876;172.20.17.123:9876
+  producer:
+     name: grop-apilog-producter
+     group: apilog
+     maxMessageSize: 4096
+     sendMsgTimeout: 3000
+     retryTimesWhenSendFailed: 2
+  consumer:
+     name: grop-apilog-consumer
+     group: apilog
+     consumeMessageBatchMaxSize: 1
+
+
+AES-KEY:
+  key1: neusoft
+  key2: yunnan
+  key3: idecision
+  
+filePath:
+  whiteIPFile: conf/whiteIPForApi.txt
+  sensitiveFile: conf/sensitiveWords.txt
+
+expired-time:
+  days: 180
+
+

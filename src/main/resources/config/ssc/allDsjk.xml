@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://server.wei.com">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ser:allDsjk>
+            <ser:xml>$xml</ser:xml>
+        </ser:allDsjk>
+    </soapenv:Body>
+</soapenv:Envelope>

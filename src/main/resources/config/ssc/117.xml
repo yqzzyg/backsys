@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.server.employment.neusoft.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="employmentService" targetNamespace="http://service.server.employment.neusoft.com">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://service.server.employment.neusoft.com" targetNamespace="http://service.server.employment.neusoft.com">
+            <xsd:complexType name="queryResponse">
+                <xsd:sequence>
+                    <xsd:element form="qualified" minOccurs="0" name="queryresult" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="query">
+                <xsd:sequence>
+                    <xsd:element form="qualified" minOccurs="0" name="account" type="xsd:string"></xsd:element>
+                    <xsd:element form="qualified" minOccurs="0" name="password" type="xsd:string"></xsd:element>
+                    <xsd:element form="qualified" minOccurs="0" name="function" type="xsd:string"></xsd:element>
+                    <xsd:element form="qualified" minOccurs="0" name="param" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="sendResponse">
+                <xsd:sequence>
+                    <xsd:element form="qualified" minOccurs="0" name="sendresult" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="send">
+                <xsd:sequence>
+                    <xsd:element form="qualified" minOccurs="0" name="sender" type="xsd:string"></xsd:element>
+                    <xsd:element form="qualified" minOccurs="0" name="function" type="xsd:string"></xsd:element>
+                    <xsd:element form="qualified" minOccurs="0" name="operatorName" type="xsd:string"></xsd:element>
+                    <xsd:element form="qualified" minOccurs="0" name="transId" type="xsd:string"></xsd:element>
+                    <xsd:element form="qualified" minOccurs="0" name="param" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="queryResponse" type="ns0:queryResponse"></xsd:element>
+            <xsd:element name="query" type="ns0:query"></xsd:element>
+            <xsd:element name="sendResponse" type="ns0:sendResponse"></xsd:element>
+            <xsd:element name="send" type="ns0:send"></xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="send">
+        <wsdl:part element="tns:send" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="sendResponse">
+        <wsdl:part element="tns:sendResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="queryResponse">
+        <wsdl:part element="tns:queryResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="query">
+        <wsdl:part element="tns:query" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="EmploymentWebService">
+        <wsdl:operation name="send">
+            <wsdl:input message="tns:send" name="send"></wsdl:input>
+            <wsdl:output message="tns:sendResponse" name="sendResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <wsdl:input message="tns:query" name="query"></wsdl:input>
+            <wsdl:output message="tns:queryResponse" name="queryResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="employmentServiceSoapBinding" type="tns:EmploymentWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+        <wsdl:operation name="send">
+            <soap:operation soapAction="http://service.server.employment.neusoft.com/services/employmentService/send" style="document"></soap:operation>
+            <wsdl:input name="send">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="sendResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <soap:operation soapAction="http://service.server.employment.neusoft.com/services/employmentService/query" style="document"></soap:operation>
+            <wsdl:input name="query">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="queryResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="employmentService">
+        <wsdl:port binding="tns:employmentServiceSoapBinding" name="EmploymentWebServiceImplPort">
+            <soap:address location="http://117.158.139.199:9001/services/employmentService"></soap:address>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

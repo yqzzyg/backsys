@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.mid.ec.api.service.userlog.UserLogRepository">
+    <resultMap id="BaseResultMap" type="com.neusoft.mid.ec.api.domain.UserLog" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_ip" property="userIp" jdbcType="VARCHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="idtype" property="idtype" jdbcType="VARCHAR" />
+        <result column="idno" property="idno" jdbcType="VARCHAR" />
+        <result column="funcid" property="funcid" jdbcType="VARCHAR" />
+        <result column="sysid" property="sysid" jdbcType="VARCHAR" />
+        <result column="token" property="token" jdbcType="VARCHAR" />
+        <result column="toserverid" property="toserverid" jdbcType="VARCHAR" />
+        <result column="fromserverid" property="fromserverid" jdbcType="VARCHAR" />
+        <result column="version" property="version" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="dept_code" property="deptCode" jdbcType="VARCHAR" />
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+        <result column="interface_code" property="interfaceCode" jdbcType="VARCHAR" />
+        <result column="interface_name" property="interfaceName" jdbcType="VARCHAR" />
+        <result column="interface_url" property="interfaceUrl" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+        <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
+        <result column="completion_time" property="completionTime" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="BaseResultDepartmentDict" type="com.neusoft.mid.ec.api.domain.DepartmentDict" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="dict_code" property="dictCode" jdbcType="VARCHAR" />
+        <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+        <result column="crt_user" property="crtUser" jdbcType="VARCHAR" />
+        <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
+        <result column="modf_user" property="modfUser" jdbcType="VARCHAR" />
+        <result column="modf_time" property="modfTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="BaseResultInterfaceDict" type="com.neusoft.mid.ec.api.domain.InterfaceDict" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="interface_code" property="interfaceCode" jdbcType="VARCHAR" />
+        <result column="interface_name" property="interfaceName" jdbcType="VARCHAR" />
+        <result column="interface_url" property="interfaceUrl" jdbcType="VARCHAR" />
+        <result column="crt_user" property="crtUser" jdbcType="VARCHAR" />
+        <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
+        <result column="modf_user" property="modfUser" jdbcType="VARCHAR" />
+        <result column="modf_time" property="modfTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <select id="selectUserLogCount"  resultType="java.lang.Long">
+        select count(t.id)
+        from ${record.tableName} t
+        <where>
+            <if test="record.userName != null and record.userName != ''">
+                and t.user_name like CONCAT('%',#{record.userName},'%')
+            </if>
+            <if test="record.type != null and record.type != ''">
+                and t.type = #{record.type}
+            </if>
+            <if test="record.deptCode != null and record.deptCode != ''">
+                and t.dept_code = #{record.deptCode}
+            </if>
+            <if test="record.deptName != null and record.deptName != ''">
+                and t.dept_name like CONCAT('%',#{record.deptName},'%')
+            </if>
+            <if test="record.interfaceCode != null and record.interfaceCode != ''">
+                and t.interface_code = #{record.interfaceCode}
+            </if>
+            <if test="record.interfaceName != null and record.interfaceName != ''">
+                and t.interface_name like CONCAT('%',#{record.interfaceName},'%')
+            </if>
+            <if test="record.startTime != null">
+                and t.crt_time >= #{record.startTime}
+            </if>
+            <if test="record.endTime != null">
+                and t.crt_time &lt;= #{record.endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectUserLogList"  resultMap="BaseResultMap">
+        select
+                t.id, t.user_ip, t.user_name, t.idtype, t.idno, t.funcid, t.`sysid`, t.token, t.toserverid, t.fromserverid,
+                t.version, t.description, t.dept_code, t.dept_name, t.interface_code, t.interface_name, t.interface_url,
+                t.`type`, t.crt_time
+           from ${record.tableName} t
+			  <where>
+                  <if test="record.userName != null and record.userName != ''">
+                      and t.user_name like CONCAT('%',#{record.userName},'%')
+                  </if>
+                  <if test="record.type != null and record.type != ''">
+                      and t.type = #{record.type}
+                  </if>
+                  <if test="record.deptCode != null and record.deptCode != ''">
+                      and t.dept_code = #{record.deptCode}
+                  </if>
+                  <if test="record.deptName != null and record.deptName != ''">
+                      and t.dept_name like CONCAT('%',#{record.deptName},'%')
+                  </if>
+                  <if test="record.interfaceCode != null and record.interfaceCode != ''">
+                      and t.interface_code = #{record.interfaceCode}
+                  </if>
+                  <if test="record.interfaceName != null and record.interfaceName != ''">
+                      and t.interface_name like CONCAT('%',#{record.interfaceName},'%')
+                  </if>
+                  <if test="record.startTime != null">
+                      and t.crt_time >= #{record.startTime}
+                  </if>
+                  <if test="record.endTime != null">
+                      and t.crt_time &lt;= #{record.endTime}
+                  </if>
+              </where>
+        limit #{offset},#{limit}
+    </select>
+
+
+    <select id="selectDepartmentDictList"  resultMap="BaseResultDepartmentDict">
+        select t.id,t.dict_name,t.dict_code,t.crt_user,t.crt_time,t.modf_user,t.modf_time FROM department_dict t
+          <where>
+              <if test="record.dictCode != null and record.dictCode != ''" >
+                and t.dict_code = #{record.dictCode,jdbcType=VARCHAR}
+              </if>
+              <if test="record.dictName != null and record.dictName != ''" >
+                 and t.dict_name like CONCAT('%',#{record.dictName},'%')
+              </if>
+          </where>
+        limit #{offset},#{limit}
+    </select>
+
+
+    <select id="selectDepartmentDictCount"  resultType="java.lang.Long">
+        SELECT count(t.id) FROM department_dict t
+        <where>
+            <if test="record.dictCode != null and record.dictCode != ''" >
+                and t.dict_code = #{record.dictCode,jdbcType=VARCHAR}
+            </if>
+            <if test="record.dictName != null and record.dictName != ''" >
+                and t.dict_name like CONCAT('%',#{record.dictName},'%')
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectInterfaceDictList"  resultMap="BaseResultInterfaceDict">
+        select t.id,t.interface_code,t.interface_name,t.interface_url,t.crt_user,t.crt_time,t.modf_user,t.modf_time FROM interface_dict t
+         <where>
+             <if test="record.interfaceCode != null and record.interfaceCode != ''" >
+                 and t.interface_code = #{record.interfaceCode,jdbcType=VARCHAR}
+             </if>
+             <if test="record.interfaceName != null and record.interfaceName != ''">
+                 and t.interface_name like CONCAT('%',#{record.interfaceName},'%')
+             </if>
+         </where>
+        limit #{offset},#{limit}
+    </select>
+
+
+    <select id="selectInterfaceDictCount"  resultType="java.lang.Long">
+        SELECT count(t.id) FROM interface_dict t
+        <where>
+            <if test="record.interfaceCode != null and record.interfaceCode != ''" >
+                and t.interface_code = #{record.interfaceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="record.interfaceName != null and record.interfaceName != ''">
+                and t.interface_name like CONCAT('%',#{record.interfaceName},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertLog" >
+        insert into ${record.tableName}
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="record.id != null" >
+                id,
+            </if>
+            <if test="record.userIp != null and record.userIp != ''" >
+                user_ip,
+            </if>
+            <if test="record.userName != null and record.userName != ''" >
+                user_name,
+            </if>
+            <if test="record.idtype != null and record.idtype != ''" >
+                idtype,
+            </if>
+            <if test="record.idno != null and record.idno != ''" >
+                idno,
+            </if>
+            <if test="record.funcid != null and record.funcid != ''" >
+                funcid,
+            </if>
+            <if test="record.sysid != null and record.sysid != ''" >
+                `sysid`,
+            </if>
+            <if test="record.token != null and record.token != ''" >
+                token,
+            </if>
+            <if test="record.toserverid != null and record.toserverid != ''" >
+                toserverid,
+            </if>
+            <if test="record.fromserverid != null and record.fromserverid != ''" >
+                fromserverid,
+            </if>
+            <if test="record.version != null and record.version != ''" >
+                version,
+            </if>
+            <if test="record.description != null and record.description != ''" >
+                description,
+            </if>
+            <if test="record.deptCode != null and record.deptCode != ''" >
+                dept_code,
+            </if>
+            <if test="record.deptName != null and record.deptName != ''" >
+                dept_name,
+            </if>
+            <if test="record.interfaceCode != null and record.interfaceCode != ''" >
+                interface_code,
+            </if>
+            <if test="record.interfaceName != null and record.interfaceName != ''" >
+                interface_name,
+            </if>
+            <if test="record.interfaceUrl != null and record.interfaceUrl != ''" >
+                interface_url,
+            </if>
+            <if test="record.type != null and record.type != ''" >
+                `type`,
+            </if>
+            <if test="record.crtTime != null" >
+                crt_time,
+            </if>
+            <if test="record.completionTime != null" >
+                completion_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="record.id != null" >
+                #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userIp != null and record.userIp != ''" >
+                #{record.userIp,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userName != null and record.userName != ''" >
+                #{record.userName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.idtype != null and record.idtype != ''" >
+                #{record.idtype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.idno != null and record.idno != ''" >
+                #{record.idno,jdbcType=VARCHAR},
+            </if>
+            <if test="record.funcid != null and record.funcid != ''" >
+                #{record.funcid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sysid != null and record.sysid != ''" >
+                #{record.sysid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.token != null and record.token != ''" >
+                #{record.token,jdbcType=VARCHAR},
+            </if>
+            <if test="record.toserverid != null and record.toserverid != ''" >
+                #{record.toserverid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fromserverid != null and record.fromserverid != ''" >
+               #{record.fromserverid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.version != null and record.version != ''" >
+                #{record.version,jdbcType=VARCHAR},
+            </if>
+            <if test="record.description != null and record.description != ''" >
+                #{record.description,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deptCode != null and record.deptCode != ''" >
+                #{record.deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deptName != null and record.deptName != ''" >
+                #{record.deptName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.interfaceCode != null and record.interfaceCode != ''" >
+                #{record.interfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.interfaceName != null and record.interfaceName != ''" >
+                #{record.interfaceName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.interfaceUrl != null and record.interfaceUrl != ''" >
+                #{record.interfaceUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.type != null and record.type != ''" >
+                #{record.type,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtTime != null" >
+                #{record.crtTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.completionTime != null" >
+                #{record.completionTime,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertDeparment">
+        insert into department_dict
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="record.id != null" >
+                id,
+            </if>
+            <if test="record.dictCode != null and record.dictCode != ''" >
+                dict_code,
+            </if>
+            <if test="record.dictName != null and record.dictName != ''" >
+                dict_name,
+            </if>
+            <if test="record.crtUser != null and record.crtUser != ''" >
+                crt_user,
+            </if>
+            <if test="record.crtTime != null" >
+                crt_time,
+            </if>
+            <if test="record.modfUser != null and record.modfUser != ''" >
+                modf_user,
+            </if>
+            <if test="record.modfTime != null" >
+                modf_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="record.id != null" >
+                #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.dictCode != null and record.dictCode != ''" >
+                #{record.dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dictName != null and record.dictName != ''" >
+                #{record.dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtUser != null and record.crtUser != ''" >
+                #{record.crtUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtTime != null" >
+                #{record.crtTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.modfUser != null and record.modfUser != ''" >
+                #{record.modfUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.modfTime != null" >
+                #{record.modfTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateDepartment" >
+        update department_dict
+        <set >
+            <if test="record.dictCode != null and record.dictCode != ''" >
+                dict_code = #{record.dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dictName != null and record.dictName != ''" >
+                dict_name = #{record.dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtUser != null and record.crtUser != ''" >
+                crt_user = #{record.crtUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtTime != null" >
+                crt_time = #{record.crtTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.modfUser != null and record.modfUser != ''" >
+                modf_user = #{record.modfUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.modfTime != null" >
+                modf_time = #{record.modfTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{record.id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteDepartment">
+        delete from department_dict
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insertInterface" >
+        insert into interface_dict
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="record.id != null" >
+                id,
+            </if>
+            <if test="record.dictCode != null and record.dictCode != ''" >
+                dict_code,
+            </if>
+            <if test="record.dictName != null and record.dictName != ''" >
+                dict_name,
+            </if>
+            <if test="record.crtUser != null and record.crtUser != ''" >
+                crt_user,
+            </if>
+            <if test="record.crtTime != null" >
+                crt_time,
+            </if>
+            <if test="record.modfUser != null and record.modfUser != ''" >
+                modf_user,
+            </if>
+            <if test="record.modfTime != null" >
+                modf_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="record.id != null" >
+                #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.dictCode != null and record.dictCode != ''" >
+                #{record.dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dictName != null and record.dictName != ''" >
+                #{record.dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtUser != null and record.crtUser != ''" >
+                #{record.crtUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtTime != null" >
+                #{record.crtTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.modfUser != null and record.modfUser != ''" >
+                #{record.modfUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.modfTime != null" >
+                #{record.modfTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateInterface" >
+        update interface_dict
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.interfaceCode != null and record.interfaceCode != ''" >
+                interface_code = #{record.interfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.interfaceName != null and record.interfaceName != ''" >
+                interface_name = #{record.interfaceName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.interfaceUrl != null and record.interfaceUrl != ''" >
+                interface_url = #{record.interfaceUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtUser != null and record.crtUser != ''" >
+                crt_user = #{record.crtUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.crtTime != null" >
+                crt_time = #{record.crtTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.modfUser != null and record.modfUser != ''" >
+                modf_user = #{record.modfUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.modfTime != null" >
+                modf_time = #{record.modfTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where  id = #{record.id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteInterface" >
+        delete from interface_dict
+        where  id = #{id,jdbcType=BIGINT}
+    </delete>
+
+</mapper>

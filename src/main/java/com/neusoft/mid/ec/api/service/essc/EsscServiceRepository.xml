@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.mid.ec.api.service.essc.EsscServiceRepository">
+    <resultMap id="BaseResultMap" type="com.neusoft.mid.ec.api.domain.essc.HnesscSigninfo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="bizid" property="bizid" jdbcType="VARCHAR" />
+        <result column="reqTime" property="reqTime" jdbcType="VARCHAR" />
+        <result column="reqMsgId" property="reqMsgId" jdbcType="VARCHAR" />
+        <result column="cmdNo" property="cmdNo" jdbcType="VARCHAR" />
+        <result column="userid" property="userid" jdbcType="VARCHAR" />
+        <result column="sign_status" property="signStatus" jdbcType="VARCHAR" />
+        <result column="medical_card_id" property="medicalCardId" jdbcType="VARCHAR" />
+        <result column="medical_card_no" property="medicalCardNo" jdbcType="VARCHAR" />
+        <result column="real_name" property="realName" jdbcType="VARCHAR" />
+        <result column="user_card_no" property="userCardNo" jdbcType="VARCHAR" />
+        <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modifyTime" property="modifyTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+	<select id="query"  resultMap="BaseResultMap">
+		select id, bizid,reqTime,reqMsgId,cmdNo, userid, sign_status, medical_card_id, medical_card_no, real_name, user_card_no, mobile, type, createTime, modifyTime 
+		from hnessc_signinfo 
+		<where>
+             <if test="record.id!= null and record.id!=''">
+                and id = #{record.id}
+            </if>
+            <if test="record.bizid!= null and record.bizid!=''">
+                and bizid = #{record.bizid}
+            </if>
+            <if test="record.reqTime!= null and record.reqTime!=''">
+                and reqTime = #{record.reqTime}
+            </if>
+            <if test="record.reqMsgId!= null and record.reqMsgId!=''">
+                and reqMsgId = #{record.reqMsgId}
+            </if>
+            <if test="record.cmdNo!= null and record.cmdNo!=''">
+                and cmdNo = #{record.cmdNo}
+            </if>
+            <if test="record.userid!= null and record.userid!=''">
+                and userid = #{record.userid}
+            </if>
+            <if test="record.signStatus!= null and record.signStatus!=''">
+                and sign_status = #{record.signStatus}
+            </if>
+            <if test="record.medicalCardId!= null and record.medicalCardId!=''">
+                and medical_card_id = #{record.medicalCardId}
+            </if>
+            <if test="record.medicalCardNo!= null and record.medicalCardNo!=''">
+                and medical_card_no = #{record.medicalCardNo}
+            </if>
+            <if test="record.realName!= null and record.realName!=''">
+                and real_name = #{record.realName}
+            </if>
+            <if test="record.userCardNo!= null and record.userCardNo!=''">
+                and user_card_no = #{record.userCardNo}
+            </if>
+            <if test="record.areaCode!= null and record.areaCode!=''">
+                and area_code = #{record.areaCode}
+            </if>
+            <if test="record.mobile!= null and record.mobile!=''">
+                and mobile = #{record.mobile}
+            </if>
+            <if test="record.type!= null and record.type!=''">
+                and type  = #{record.type}
+            </if>
+            <if test="record.createTime!= null">
+                and createTime = #{record.createTime}
+            </if>
+            <if test="record.modifyTime!= null">
+                and modifyTime = #{record.modifyTime}
+            </if>
+        </where>
+        order by id 
+	</select>
+	<update id="update" >
+        update hnessc_signinfo
+        <set >
+			<if test="record.bizid != null and record.bizid != ''" >
+			    bizid = #{record.bizid,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reqTime != null and record.reqTime != ''" >
+			    reqTime = #{record.reqTime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reqMsgId != null and record.reqMsgId != ''" >
+			    reqMsgId = #{record.reqMsgId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.cmdNo != null and record.cmdNo != ''" >
+			    cmdNo = #{record.cmdNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userid != null and record.userid != ''" >
+			    userid = #{record.userid,jdbcType=VARCHAR},
+			</if>
+			<if test="record.signStatus != null and record.signStatus != ''" >
+			    sign_status = #{record.signStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="record.medicalCardId != null and record.medicalCardId != ''" >
+			    medical_card_id = #{record.medicalCardId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.medicalCardNo != null and record.medicalCardNo != ''" >
+			    medical_card_no = #{record.medicalCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.realName != null and record.realName != ''" >
+			    real_name = #{record.realName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userCardNo != null and record.userCardNo != ''" >
+			    user_card_no = #{record.userCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.areaCode != null and record.areaCode != ''" >
+			    area_code = #{record.areaCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.mobile != null and record.mobile != ''" >
+			    mobile = #{record.mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="record.type != null and record.type != ''" >
+			    type = #{record.type,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createTime != null" >
+			    createTime = #{record.createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifyTime != null" >
+			   modifyTime  = #{record.modifyTime,jdbcType=VARCHAR},
+			</if>
+        </set>
+        where id = #{record.id,jdbcType=VARCHAR}
+    </update>
+	<insert id="insert" >
+        insert into hnessc_signinfo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="record.id != null" >
+			    id,
+			</if>
+			<if test="record.bizid != null" >
+			    bizid,
+			</if>
+			<if test="record.reqTime != null" >
+			    reqTime,
+			</if>
+			<if test="record.reqMsgId != null" >
+			    reqMsgId,
+			</if>
+			<if test="record.cmdNo != null" >
+			    cmdNo,
+			</if>
+			<if test="record.userid != null" >
+			    userid,
+			</if>
+			<if test="record.signStatus != null" >
+			    sign_status,
+			</if>
+			<if test="record.medicalCardId != null" >
+			    medical_card_id,
+			</if>
+			<if test="record.medicalCardNo != null" >
+			    medical_card_no,
+			</if>
+			<if test="record.realName != null" >
+			    real_name,
+			</if>
+			<if test="record.userCardNo != null" >
+			    user_card_no,
+			</if>
+			<if test="record.areaCode != null" >
+			    area_code,
+			</if>
+			<if test="record.mobile != null" >
+			    mobile,
+			</if>
+			<if test="record.type != null" >
+			    type,
+			</if>
+			<if test="record.createTime != null" >
+			    createTime,
+			</if>
+			<if test="record.modifyTime != null" >
+			    modifyTime,
+			</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="record.id != null" >
+			    #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.bizid != null" >
+			    #{record.bizid,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reqTime != null" >
+			    #{record.reqTime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reqMsgId != null" >
+			    #{record.reqMsgId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.cmdNo != null" >
+			    #{record.cmdNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userid != null" >
+			    #{record.userid,jdbcType=VARCHAR},
+			</if>
+			<if test="record.signStatus != null" >
+			    #{record.signStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="record.medicalCardId != null" >
+			    #{record.medicalCardId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.medicalCardNo != null" >
+			    #{record.medicalCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.realName != null" >
+			    #{record.realName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userCardNo != null" >
+			    #{record.userCardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.areaCode != null" >
+			    #{record.areaCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.mobile != null" >
+			    #{record.mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="record.type != null" >
+			    #{record.type,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createTime != null" >
+			    #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null" >
+			    #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+    </insert>
+</mapper>

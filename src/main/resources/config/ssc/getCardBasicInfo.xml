@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://server.wei.com">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ser:getRysj>
+            <ser:user>$username</ser:user>
+            <ser:pass>$password</ser:pass>
+            <ser:aac002>$IDNo</ser:aac002>
+            <ser:aac003>$name</ser:aac003>
+            <ser:aab301>$cityCode</ser:aab301>
+        </ser:getRysj>
+    </soapenv:Body>
+</soapenv:Envelope>
