@@ -269,4 +269,112 @@ public class CountryOrganizationServiceImpl implements CountryOrganizationServic
 		list = countryOrganizationRepository.getCwsyInfo(organization, offset, bounds.getLimit());
 		return new ListSlice(total, list);
 	}
+
+	@Override
+	public ListSlice<CountryOrganization> getFfssmlcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getFfssmlcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getMzmxbbzxxcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getMzmxbbzxxcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getMzmxbxecx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getMzmxbxecx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getZdbmzbxecx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getZdbmzbxecx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getPtbzxxcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getPtbzxxcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getYpmlxxcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getYpmlxxcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getZlmlxxcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getZlmlxxcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getZzsjdsqxxcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getZzsjdsqxxcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getZzslnpjgzcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getZzslnpjgzcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getZzslhjyylryjfdccx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getZzslhjyylryjfdccx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getZzslhjyyilryjfdccx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getZzslhjyyilryjfdccx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
+
+	@Override
+	public ListSlice<CountryOrganization> getZtdbbzxxcx(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.getZtdbbzxxcx(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
 }

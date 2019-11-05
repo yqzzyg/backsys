@@ -20,10 +20,12 @@ spring:
     maxOpenPreparedStatements: 20
     
     #本地测试环境
+    #url: jdbc:mysql://127.0.0.1:3306/gbdb?characterEncoding=utf8&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true
+    #username: root
+    #password: root
     url: jdbc:mysql://172.20.17.122:3306/govapi?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true
     username: root
     password: dsjj@2019!!!
-    
     #正式环境
     #url: jdbc:mysql://10.174.20.79:3306/idecision?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true
     #username: root

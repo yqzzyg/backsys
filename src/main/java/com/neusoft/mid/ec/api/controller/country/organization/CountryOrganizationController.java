@@ -778,7 +778,8 @@ public class CountryOrganizationController extends BaseController {
         }
         return object;
     }
-    @ApiOperation("医保定点村卫生院查询接口")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@ApiOperation("医保定点村卫生院查询接口")
     @RequestMapping(value = "/getCwsyInfo", method = RequestMethod.POST)
     public Response getCwsyInfo(CountryOrganization organization, Pagination pagination) {
         Response<ListSlice<CountryOrganization>> object = new Response<>();
@@ -806,5 +807,349 @@ public class CountryOrganizationController extends BaseController {
         }
         return object;
     }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("服务设施目录查询接口")
+       @RequestMapping(value = "/getFfssmlcx", method = RequestMethod.POST)
+       public Response getFfssmlcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("服务设施名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入服务设施名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg28");
+               ListSlice<CountryOrganization> ls=service.getFfssmlcx(organization, bounds);
+               logger.info("服务设施目录查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("服务设施目录查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("门诊慢性病病种信息查询接口")
+       @RequestMapping(value = "/getMzmxbbzxxcx", method = RequestMethod.POST)
+       public Response getMzmxbbzxxcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("病种名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入病种名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg29");
+               ListSlice<CountryOrganization> ls=service.getMzmxbbzxxcx(organization, bounds);
+               logger.info("门诊慢性病病种信息查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("门诊慢性病病种信息查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("门诊慢性病限额查询接口")
+       @RequestMapping(value = "/getMzmxbxecx", method = RequestMethod.POST)
+       public Response getMzmxbxecx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("门诊慢性病名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入门诊慢性病名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg30");
+               ListSlice<CountryOrganization> ls=service.getMzmxbxecx(organization, bounds);
+               logger.info("门诊慢性病限额查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("门诊慢性病限额查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("重大病门诊病限额查询接口")
+       @RequestMapping(value = "/getZdbmzbxecx", method = RequestMethod.POST)
+       public Response getZdbmzbxecx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("病种名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入病种名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg31");
+               ListSlice<CountryOrganization> ls=service.getZdbmzbxecx(organization, bounds);
+               logger.info("重大病门诊病限额查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("重大病门诊病限额查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("普通病种信息查询接口")
+       @RequestMapping(value = "/getPtbzxxcx", method = RequestMethod.POST)
+       public Response getPtbzxxcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("病种名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入病种名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg32");
+               ListSlice<CountryOrganization> ls=service.getPtbzxxcx(organization, bounds);
+               logger.info("普通病种信息查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("普通病种信息查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("药品目录信息查询接口")
+       @RequestMapping(value = "/getYpmlxxcx", method = RequestMethod.POST)
+       public Response getYpmlxxcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("药品名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入药品名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg33");
+               ListSlice<CountryOrganization> ls=service.getYpmlxxcx(organization, bounds);
+               logger.info("药品目录信息查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("药品目录信息查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("诊疗目录信息查询接口")
+       @RequestMapping(value = "/getZlmlxxcx", method = RequestMethod.POST)
+       public Response getZlmlxxcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("项目名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入项目名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg34");
+               ListSlice<CountryOrganization> ls=service.getZlmlxxcx(organization, bounds);
+               logger.info("诊疗目录信息查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("诊疗目录信息查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("郑州市街道社区信息查询接口")
+       @RequestMapping(value = "/getZzsjdsqxxcx", method = RequestMethod.POST)
+       public Response getZzsjdsqxxcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+			/*
+			 * if (StringUtils.isBlank(organization.getAJG004())) {
+			 * logger.error("卫生院名称不能为空"); object.setCode(500);
+			 * object.setDescription("请输入卫生院名称");
+			 * object.setLastUpdateTime(System.currentTimeMillis()); return object; }
+			 */
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg35");
+               ListSlice<CountryOrganization> ls=service.getZzsjdsqxxcx(organization, bounds);
+               logger.info("郑州市街道社区信息查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("郑州市街道社区信息查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("郑州市历年平均工资查询接口")
+       @RequestMapping(value = "/getZzslnpjgzcx", method = RequestMethod.POST)
+       public Response getZzslnpjgzcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+			/*
+			 * if (StringUtils.isBlank(organization.getAJG004())) {
+			 * logger.error("卫生院名称不能为空"); object.setCode(500);
+			 * object.setDescription("请输入卫生院名称");
+			 * object.setLastUpdateTime(System.currentTimeMillis()); return object; }
+			 */
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg36");
+               ListSlice<CountryOrganization> ls=service.getZzslnpjgzcx(organization, bounds);
+               logger.info("郑州市历年平均工资查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("郑州市历年平均工资查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("郑州市灵活就业养老人员缴费档次查询接口")
+       @RequestMapping(value = "/getZzslhjyylryjfdccx", method = RequestMethod.POST)
+       public Response getZzslhjyylryjfdccx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+			/*
+			 * if (StringUtils.isBlank(organization.getAJG004())) {
+			 * logger.error("卫生院名称不能为空"); object.setCode(500);
+			 * object.setDescription("请输入卫生院名称");
+			 * object.setLastUpdateTime(System.currentTimeMillis()); return object; }
+			 */
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg37");
+               ListSlice<CountryOrganization> ls=service.getZzslhjyylryjfdccx(organization, bounds);
+               logger.info("郑州市灵活就业养老人员缴费档次查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("郑州市灵活就业养老人员缴费档次查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("郑州市灵活就业医疗人员缴费档次查询接口")
+       @RequestMapping(value = "/getZzslhjyyilryjfdccx", method = RequestMethod.POST)
+       public Response getZzslhjyyilryjfdccx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+			/*
+			 * if (StringUtils.isBlank(organization.getAJG004())) {
+			 * logger.error("卫生院名称不能为空"); object.setCode(500);
+			 * object.setDescription("请输入卫生院名称");
+			 * object.setLastUpdateTime(System.currentTimeMillis()); return object; }
+			 */
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg38");
+               ListSlice<CountryOrganization> ls=service.getZzslhjyyilryjfdccx(organization, bounds);
+               logger.info("郑州市灵活就业医疗人员缴费档次查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("郑州市灵活就业医疗人员缴费档次查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("重特大病病种信息查询接口")
+       @RequestMapping(value = "/getZtdbbzxxcx", method = RequestMethod.POST)
+       public Response getZtdbbzxxcx(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("病种名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入病种名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg39");
+               ListSlice<CountryOrganization> ls=service.getZtdbbzxxcx(organization, bounds);
+               logger.info("重特大病病种信息查询出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("重特大病病种信息查询接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
     
 }

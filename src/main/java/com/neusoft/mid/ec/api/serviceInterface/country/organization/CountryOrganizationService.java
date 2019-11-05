@@ -65,4 +65,28 @@ public interface CountryOrganizationService {
 	ListSlice<CountryOrganization> getSqmzInfo(CountryOrganization organization, ListBounds bounds);
 	
 	ListSlice<CountryOrganization> getCwsyInfo(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getFfssmlcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getMzmxbbzxxcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getMzmxbxecx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getZdbmzbxecx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getPtbzxxcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getYpmlxxcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getZlmlxxcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getZzsjdsqxxcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getZzslnpjgzcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getZzslhjyylryjfdccx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getZzslhjyyilryjfdccx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> getZtdbbzxxcx(CountryOrganization organization, ListBounds bounds);
 }

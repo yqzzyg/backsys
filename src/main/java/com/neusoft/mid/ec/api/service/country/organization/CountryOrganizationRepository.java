@@ -15,7 +15,7 @@ import com.neusoft.mid.ec.api.domain.country.CountryOrganization;
 @Mapper
 public interface CountryOrganizationRepository {
 	long getJGCount(@Param(value = "record")CountryOrganization organization);
-	
+	long getSBCount(@Param(value = "record")CountryOrganization organization);
 	List<CountryOrganization> getShflyInfoList(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 	
 	List<CountryOrganization> getCsjgInfo(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
@@ -69,5 +69,29 @@ public interface CountryOrganizationRepository {
 	List<CountryOrganization> getSqmzInfo(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 
 	List<CountryOrganization> getCwsyInfo(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getFfssmlcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getMzmxbbzxxcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getMzmxbxecx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getZdbmzbxecx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getPtbzxxcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getYpmlxxcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getZlmlxxcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getZzsjdsqxxcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getZzslnpjgzcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getZzslhjyylryjfdccx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getZzslhjyyilryjfdccx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+	
+	List<CountryOrganization> getZtdbbzxxcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 
 }

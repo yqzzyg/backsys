@@ -10,7 +10,15 @@
             </if>
         </where>
     </select>
-	
+	<select id="getSBCount"  resultType="java.lang.Long">
+        select count(t.id)
+        from ${record.tableName} t
+        <where>
+             <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+    </select>
 	<select id="getShflyInfoList" resultType="CountryOrganization">
 		select
 			AJG001,
@@ -483,4 +491,250 @@
         </where>
 		 limit #{offset},#{limit}
 	</select>
+	<select id="getFfssmlcx" resultType="CountryOrganization">
+		select
+		    id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg28
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getMzmxbbzxxcx" resultType="CountryOrganization">
+		select
+			 id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg29
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getMzmxbxecx" resultType="CountryOrganization">
+		select
+			 id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg30
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getZdbmzbxecx" resultType="CountryOrganization">
+		select
+			 id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg31
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getPtbzxxcx" resultType="CountryOrganization">
+		select
+			 id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg32
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getYpmlxxcx" resultType="CountryOrganization">
+		select
+			 id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg33
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getZlmlxxcx" resultType="CountryOrganization">
+		select
+			 id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg34
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getZzsjdsqxxcx" resultType="CountryOrganization">
+		select
+			 id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg35
+			<where>
+			 1=1
+            <!-- <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG004 like CONCAT('%',#{record.AJG004},'%')
+            </if> -->
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getZzslnpjgzcx" resultType="CountryOrganization">
+		select
+			id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg36
+			<where>
+			 1=1
+           <!--  <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG004 like CONCAT('%',#{record.AJG004},'%')
+            </if> -->
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getZzslhjyylryjfdccx" resultType="CountryOrganization">
+		select
+			id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg37
+			<where>
+			1=1
+            <!-- <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG004 like CONCAT('%',#{record.AJG004},'%')
+            </if> -->
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getZzslhjyyilryjfdccx" resultType="CountryOrganization">
+		select
+			id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg38
+			<where>
+			1=1
+           <!--  <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG004 like CONCAT('%',#{record.AJG004},'%')
+            </if> -->
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	<select id="getZtdbbzxxcx" resultType="CountryOrganization">
+		select
+			id,
+			AJG100,
+		 	AJG101,
+		 	AJG102,
+		 	AJG103,
+		 	AJG104,
+		 	AJG105,
+		 	AJG106,
+		 	AJG107
+		from
+			jg39
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
+	
+	
 </mapper>
