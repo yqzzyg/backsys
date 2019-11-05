@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +43,9 @@ import me.puras.common.json.Response;
 @RestController
 @RequestMapping("/hnessc")
 public class EsscController extends BaseController {
+	
+	@Autowired
+    private Environment environment;
 
 	@Autowired
 	private EsscService esscService;
@@ -72,20 +76,20 @@ public class EsscController extends BaseController {
 					prtMap.put("user_id", user_id);
 					prtMap.put("real_name", real_name);
 					prtMap.put("user_card_no", user_card_no);
-					prtMap.put("elec_card_url", Constants.ELEC_CARD_URL);
+					prtMap.put("elec_card_url", environment.getProperty("hnessc.ELEC_CARD_URL"));
 					String prtMapstr = RSAUtils.getJsonFromMap(RSAUtils.sortedMap(prtMap));
 					Map<String, String> paramsMap = new HashMap<String, String>();
 					String datestr = Date2TampsUtil.date2Str2(new Date());
 					String serialnum=RandomStringUtils.randomAlphanumeric(12);
 					paramsMap.put("outorderno", datestr+serialnum);
-					paramsMap.put("bizid", Constants.BIZID);
+					paramsMap.put("bizid", environment.getProperty("hnessc.BIZID"));
 					paramsMap.put("timestamp", Date2TampsUtil.convertDateToString2(new Date()));
 					paramsMap.put("cmdno", "EC1006");
 					paramsMap.put("platreqcontext", prtMapstr);
 					paramsMap.put("extendparams", "");
 					String ret1 = RSAUtils.sortedParams(paramsMap);
 					//System.out.println("待签名串："+ret1);
-					String ret2 = RSAUtils.signByPrivateKey(ret1);
+					String ret2 = RSAUtils.signByPrivateKey(ret1,environment.getProperty("hnessc.RSAPRIVATEKEY"));
 					//System.out.println("已签名串："+ret2);
 					
 					Map<String, String> paramsMap2 =  RSAUtils.sortedMap(paramsMap);
@@ -95,14 +99,14 @@ public class EsscController extends BaseController {
 					String paramsMapstr = RSAUtils.getJsonFromMap(paramsMap2);
 					paramsMapstr =  paramsMapstr.replace("\"######\"", prtMapstr);
 					//System.out.println("请求报文明文："+paramsMapstr);
-					String aexedtest = AESUtils.encrypt(paramsMapstr);
+					String aexedtest = AESUtils.encrypt(paramsMapstr,environment.getProperty("hnessc.AESKEY"));
 					//System.out.println("请求报文密文："+aexedtest);
 					
 					Map<String, String> mheader = new HashMap<>();
 					mheader.put("Content-Type", "text/plain;charset=utf-8");
 
-					String encryStr = HttpRequestUtil.URLPost(Constants.HNSESSCPLTFMURL,aexedtest,mheader);
-						String plaintest = AESUtils.decrypt(encryStr);
+					String encryStr = HttpRequestUtil.URLPost(environment.getProperty("hnessc.HNSESSCPLTFMURL"),aexedtest,mheader);
+						String plaintest = AESUtils.decrypt(encryStr,environment.getProperty("hnessc.AESKEY"));
 						System.out.println("plaintest="+plaintest);
 						Map<String, Object> retMap = JSON.parseObject(plaintest, new TypeReference<Map<String, Object>>() {});
 						if (retMap.get("rspcode").equals("0")) {
@@ -163,7 +167,7 @@ public class EsscController extends BaseController {
 		}
 		datastrmap.put("platrspcontext",prtMapstr);
 		String data = RSAUtils.sortedParams(datastrmap);
-		ret = RSAUtils.verifyByPublicKey(data, sign);
+		ret = RSAUtils.verifyByPublicKey(data, sign,environment.getProperty("hnessc.RSAPUBLICKEY"));
 				
 		return ret;
 	}
@@ -173,7 +177,7 @@ public class EsscController extends BaseController {
 		Map<String, String> map = new HashMap<>();
 		map.put("rspTime", Date2TampsUtil.dateFormat());
 		try {
-			String plaintest = AESUtils.decrypt(para);
+			String plaintest = AESUtils.decrypt(para,environment.getProperty("hnessc.AESKEY"));
 			System.out.println("plaintest="+plaintest);
 			Map<String, String> retMap = JSON.parseObject(plaintest, new TypeReference<Map<String, String>>() {});
 			map.put("rspMsgId", retMap.get("reqMsgId"));
@@ -204,7 +208,7 @@ public class EsscController extends BaseController {
 
 		try {
 			String ret1 = RSAUtils.sortedParams(map);
-			String ret2 = RSAUtils.signByPrivateKey(ret1);
+			String ret2 = RSAUtils.signByPrivateKey(ret1,environment.getProperty("hnessc.RSAPRIVATEKEY"));
 			map.put("sign", ret2);
 			//response.setPayload(map);
 		} catch (Exception e) {
@@ -220,7 +224,7 @@ public class EsscController extends BaseController {
 		System.out.println("sign="+sign);
 		retMap.remove("sign");
 		String data = RSAUtils.sortedParams(retMap);
-		ret = RSAUtils.verifyByPublicKey(data, sign);		
+		ret = RSAUtils.verifyByPublicKey(data, sign,environment.getProperty("hnessc.RSAPUBLICKEY"));		
 		return ret;
 	}
 

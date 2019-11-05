@@ -46,7 +46,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.alibaba.csb.sdk.security.ParamNode;
 import com.alibaba.csb.sdk.security.SortedParamList;
 import com.alibaba.druid.support.json.JSONUtils;
-import com.neusoft.mid.ec.api.Constants;
 
 /**
 * @ClassName: RSAUtils
@@ -76,8 +75,7 @@ public class RSAUtils {
 	public static final String PUBLIC_KEY = "PublicKey";
 	public static final String PRIVATE_KEY = "PrivateKey";
 	public static final String charsetName = "UTF-8";
-	public static final String PUK_STRING = Constants.RSAPUBLICKEY;
-	public static final String PRK_STRING = Constants.RSAPRIVATEKEY;
+
 	/**
 	 * 
 	 * 生成密钥
@@ -186,9 +184,6 @@ public class RSAUtils {
 
 	}
 	
-	public static String signByPrivateKey(String datastr) throws Exception {
-		return signByPrivateKey(datastr, PRK_STRING);
-	}
 	/**
 	 * 
 	 * BASE64Encoder 加密
@@ -217,8 +212,8 @@ public class RSAUtils {
 		return signature.verify(decryptBASE64(sign)); // 验证签名
 	}
 	
-	public static boolean verifyByPublicKey(String data, String sign) throws Exception {
-		return verifyByPublicKey(data.getBytes(charsetName), PUK_STRING, sign);
+	public static boolean verifyByPublicKey(String data, String sign,String pukString) throws Exception {
+		return verifyByPublicKey(data.getBytes(charsetName), pukString, sign);
 	}
 
 	/**
@@ -381,11 +376,6 @@ public class RSAUtils {
 		return sb.toString();
 	}
 	
-	public static String decryptByPrivateKey(String encryStr)
-			throws InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException,
-			BadPaddingException, InvalidKeyException {
-		return decryptByPrivateKey(encryStr, PRK_STRING);
-	}
 	
 	/**
 	 * RSA公钥解密

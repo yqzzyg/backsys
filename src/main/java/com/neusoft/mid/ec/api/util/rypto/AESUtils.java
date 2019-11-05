@@ -3,7 +3,6 @@ package com.neusoft.mid.ec.api.util.rypto;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import com.neusoft.mid.ec.api.Constants;
 import java.util.Base64;
 
 /**
@@ -18,7 +17,6 @@ public class AESUtils {
 
     private static final String defaultCharset = "UTF-8";
     private static final String KEY_AES = "AES";
-    public static final String KEY = Constants.AESKEY;
 
     /**
      * 加密
@@ -29,10 +27,6 @@ public class AESUtils {
      */
     public static String encrypt(String data, String key) throws Exception {
         return doAES(data, key, iv.getBytes(), Cipher.ENCRYPT_MODE);
-    }
-    
-    public static String encrypt(String data) throws Exception {
-        return encrypt(data,KEY);
     }
 
     /**
@@ -46,12 +40,6 @@ public class AESUtils {
         return doAES(data, key, iv.getBytes(), Cipher.DECRYPT_MODE);
     }
     
-    public static String decrypt(String data) throws Exception {
-        return decrypt(data, KEY);
-    }
-    
-    
-
     public static String doAES(String data, String secretKey, byte[] iv, int mode) throws Exception{
             boolean encrypt = mode == Cipher.ENCRYPT_MODE;
             byte[] content;
