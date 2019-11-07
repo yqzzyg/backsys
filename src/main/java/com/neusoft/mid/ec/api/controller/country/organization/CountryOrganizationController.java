@@ -1,15 +1,25 @@
 package com.neusoft.mid.ec.api.controller.country.organization;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.neusoft.mid.ec.api.controller.BaseController;
 import com.neusoft.mid.ec.api.domain.country.CountryOrganization;
+import com.neusoft.mid.ec.api.exception.GeneralException;
 import com.neusoft.mid.ec.api.serviceInterface.country.organization.CountryOrganizationService;
+import com.neusoft.mid.ec.api.util.http.HttpRequestUtil;
 
 import io.swagger.annotations.ApiOperation;
 import me.puras.common.json.Response;
@@ -18,6 +28,7 @@ import me.puras.common.util.ClientListSlice;
 import me.puras.common.util.ListBounds;
 import me.puras.common.util.ListSlice;
 import me.puras.common.util.Pagination;
+import net.sf.json.xml.XMLSerializer;
 
 /**
  * @ClassName: CountryOrganizationController
@@ -28,8 +39,13 @@ import me.puras.common.util.Pagination;
 @RestController
 @RequestMapping("/country/organization")
 public class CountryOrganizationController extends BaseController {
+	
     @Autowired
     private CountryOrganizationService service;
+    
+    @Autowired
+    private Environment environment;
+    
     @ApiOperation("社会福利院查询接口")
     @RequestMapping(value = "/getShflyInfo", method = RequestMethod.POST)
     public Response getShflyInfo(CountryOrganization organization, Pagination pagination) {
@@ -1151,5 +1167,61 @@ public class CountryOrganizationController extends BaseController {
            }
            return object;
        }
-    
+    /**
+     * 根据机构名称查询机构详细信息
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @SuppressWarnings({ "rawtypes" })
+   	@ApiOperation("根据机构名称查询机构详细信息接口")
+    @RequestMapping(value = "/jgQueryDetail", method = RequestMethod.POST)
+    public Response  teacherZigeCheckGetInfo(@RequestParam Map<String, Object> params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        if (StringUtils.isBlank(params.get("entname")==null?null:params.get("entname").toString())) {
+            object.setCode(500);
+            object.setDescription("单位全称不能为空");
+            logger.error("单位全称不能为空");
+            object.setLastUpdateTime(System.currentTimeMillis());
+            return object;
+        }
+        if (StringUtils.isBlank(params.get("entname2")==null?null:params.get("entname2").toString())) {
+            object.setCode(500);
+            object.setDescription("单位类型不能为空");
+            logger.error("单位类型不能为空");
+            object.setLastUpdateTime(System.currentTimeMillis());
+            return object;
+        }
+        String urlPath = environment.getProperty("jg.query.url");
+        Map<String, String> tokenParam = new HashMap<>();
+        tokenParam.put("entname", String.valueOf(params.get("entname")));
+        tokenParam.put("entname2", String.valueOf(params.get("entname2")));
+        String resultStr = HttpRequestUtil.URLGet(urlPath, tokenParam, "utf-8");
+        //String resultStr = "";
+        if (StringUtils.isEmpty(resultStr)) {
+            return ResponseHelper.createResponse(-9999, "查询失败");
+			/*
+			 * resultStr ="<Entries xmlns=\"http://bigdata.h3c.com/dataservice\">\r\n" +
+			 * "<Entry>\r\n" + "<uniscid>124109277631447315</uniscid>\r\n" +
+			 * "<entname>台前县夹河乡中心学校</entname>\r\n" + "<address>河南省台前县夹河乡夹河村</address>\r\n" +
+			 * "<legal_representative>田仁万</legal_representative>\r\n" +
+			 * "<institutions_state>正常</institutions_state>\r\n" +
+			 * "<institutions_date>2005-10-20</institutions_date>\r\n" +
+			 * "<bodytype>事业</bodytype>\r\n" + "<opscope/>\r\n" + "<linkmanname/>\r\n" +
+			 * "<linkmanphone/>\r\n" + "</Entry>\r\n" + "</Entries>\r\n" + "";
+			 */
+        }
+        	XMLSerializer xmlSerializer = new XMLSerializer();
+ 		    String resutStr = xmlSerializer.read(resultStr).toString();
+  		    resutStr = resutStr.replaceAll("null", "\"\"");
+ 		    net.sf.json.JSONObject resultjson = net.sf.json.JSONObject.fromObject(resutStr);
+ 		    object.setCode(0);
+ 	        object.setPayload(resultjson);
+ 	        long endTime = System.currentTimeMillis();
+ 	        object.setLastUpdateTime(endTime);
+ 	        object.setDescription("查询成功");
+        return object ;
+    }
 }
