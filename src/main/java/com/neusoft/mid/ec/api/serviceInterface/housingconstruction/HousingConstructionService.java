@@ -33,4 +33,45 @@ public interface HousingConstructionService {
      * @return
      */
     JSONObject getC003(String zcbh,String zjhm,String qymc) throws Exception;
+    /**
+               *  化妆品许可证信息查询
+     * @param SHXYDM   社会统一信用代码
+     * @return
+     * @throws Exception
+     */
+    JSONArray getC006(String SHXYDM) throws Exception;
+    /**
+               *   食品经营许可证信息查询
+     * @param xzqh  行政区划
+     * @param xkzbh 许可证编号
+     * @param comMc 企业名称
+     * @return
+     * @throws Exception
+     */
+    JSONArray getC007(String xzqh, String xkzbh, String comMc) throws Exception;
+    /**
+                *   药品经营零售GSP许可证信息查询
+     * @param xzqh  行政区划
+     * @param xkzbh 许可证编号
+     * @param comMc 企业名称
+     * @return
+     * @throws Exception
+     */
+    JSONArray getC008(String xzqh, String xkzbh, String comMc) throws Exception;
+    /**
+               * 药品经营零售许可证信息查询
+     * @param xzqh
+     * @param xkzbh
+     * @param comMc
+     * @return
+     * @throws Exception
+     */
+    JSONArray getC009(String xzqh, String xkzbh, String comMc) throws Exception;
+    /**
+               * 药品生产许可证信息查询
+     * @param SHXYDM
+     * @return
+     * @throws Exception
+     */
+    JSONArray getC010(String SHXYDM) throws Exception;
 }

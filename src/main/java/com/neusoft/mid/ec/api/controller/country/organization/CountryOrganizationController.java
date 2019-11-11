@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.neusoft.mid.ec.api.controller.BaseController;
 import com.neusoft.mid.ec.api.domain.country.CountryOrganization;
 import com.neusoft.mid.ec.api.exception.GeneralException;
 import com.neusoft.mid.ec.api.serviceInterface.country.organization.CountryOrganizationService;
+import com.neusoft.mid.ec.api.serviceInterface.housingconstruction.HousingConstructionService;
 import com.neusoft.mid.ec.api.util.http.HttpRequestUtil;
 
 import io.swagger.annotations.ApiOperation;
@@ -42,7 +44,8 @@ public class CountryOrganizationController extends BaseController {
 	
     @Autowired
     private CountryOrganizationService service;
-    
+    @Autowired
+	HousingConstructionService housingConstructionService;
     @Autowired
     private Environment environment;
     
@@ -1167,6 +1170,175 @@ public class CountryOrganizationController extends BaseController {
            }
            return object;
        }
+	/**
+	 * 化妆品许可证信息查询
+	 */
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/getHzpxkzxxcx", method = RequestMethod.POST)
+	@ApiOperation("化妆品许可证信息查询接口 ")
+	public Response getHzpxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
+			HttpServletResponse response) {
+		 Response<Object> object = new Response<>();
+		try {
+			if (null == params.get("SHXYDM") ) {
+				logger.error("社会信用代码不能为空");
+                object.setCode(500);
+                object.setDescription("请输入社会信用代码");
+                object.setLastUpdateTime(System.currentTimeMillis());
+                return object;
+			}
+			
+			String SHXYDM = (String) params.get("SHXYDM");
+			JSONArray userInfo = housingConstructionService.getC006(SHXYDM);
+			return ResponseHelper.createSuccessResponse(userInfo);
+		} catch (Exception e) {
+			logger.error("化妆品许可证信息查询接口" + e.getMessage(), e);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+            object.setLastUpdateTime(System.currentTimeMillis());
+            return object ;
+		}
+	}
+	/**
+	 * 食品经营许可证信息查询
+	 */
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/getSpjyxkzxxcx", method = RequestMethod.POST)
+	@ApiOperation("食品经营许可证信息查询 ")
+	public Response getSpjyxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
+			HttpServletResponse response) {
+		 Response<Object> object = new Response<>();
+		try {
+			if (null == params.get("comMc") ) {
+				logger.error("企业名称不能为空");
+                object.setCode(500);
+                object.setDescription("请输入企业名称");
+                object.setLastUpdateTime(System.currentTimeMillis());
+                return object;
+			}
+			if (null == params.get("xkzbh") ) {
+				logger.error("许可证编号不能为空");
+                object.setCode(500);
+                object.setDescription("请输入许可证编号");
+                object.setLastUpdateTime(System.currentTimeMillis());
+                return object;
+			}
+			String comMc = String.valueOf(params.get("comMc"));
+			String xzqh = String.valueOf(params.get("xzqh")) ;
+			String xkzbh = String.valueOf(params.get("xkzbh"));
+			JSONArray userInfo = housingConstructionService.getC007(xzqh, xkzbh, comMc);
+			return ResponseHelper.createSuccessResponse(userInfo);
+		} catch (Exception e) {
+			logger.error("食品经营许可证信息查询接口" + e.getMessage(), e);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+            object.setLastUpdateTime(System.currentTimeMillis());
+            return object ;
+		}
+	}
+	/**
+	 * 药品经营零售GSP许可证信息查询
+	 */
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/getYpjylsgspxkzxxcx", method = RequestMethod.POST)
+	@ApiOperation("药品经营零售GSP许可证信息查询接口 ")
+	public Response getYpjylsgspxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
+			HttpServletResponse response) {
+		 Response<Object> object = new Response<>();
+			try {
+				if (null == params.get("comMc") ) {
+					logger.error("企业名称不能为空");
+	                object.setCode(500);
+	                object.setDescription("请输入企业名称");
+	                object.setLastUpdateTime(System.currentTimeMillis());
+	                return object;
+				}
+				if (null == params.get("xkzbh") ) {
+					logger.error("许可证编号不能为空");
+	                object.setCode(500);
+	                object.setDescription("请输入许可证编号");
+	                object.setLastUpdateTime(System.currentTimeMillis());
+	                return object;
+				}
+				String comMc = String.valueOf(params.get("comMc"));
+				String xzqh = String.valueOf(params.get("xzqh")) ;
+				String xkzbh = String.valueOf(params.get("xkzbh"));
+				JSONArray userInfo = housingConstructionService.getC008(xzqh, xkzbh, comMc);
+				return ResponseHelper.createSuccessResponse(userInfo);
+			} catch (Exception e) {
+				logger.error("药品经营零售GSP许可证信息查询接口" + e.getMessage(), e);
+	            object.setCode(500);
+	            object.setDescription("内部服务错误");
+	            object.setLastUpdateTime(System.currentTimeMillis());
+	            return object ;
+			}
+	}
+	/**
+	 * 药品经营零售许可证信息查询
+	 */
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/getYpjylsxkzxxcx", method = RequestMethod.POST)
+	@ApiOperation("药品经营零售许可证信息查询接口 ")
+	public Response getYpjylsxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
+			HttpServletResponse response) {
+		 Response<Object> object = new Response<>();
+		try {
+			if (null == params.get("comMc") ) {
+				logger.error("企业名称不能为空");
+                object.setCode(500);
+                object.setDescription("请输入企业名称");
+                object.setLastUpdateTime(System.currentTimeMillis());
+                return object;
+			}
+			if (null == params.get("xkzbh") ) {
+				logger.error("许可证编号不能为空");
+                object.setCode(500);
+                object.setDescription("请输入许可证编号");
+                object.setLastUpdateTime(System.currentTimeMillis());
+                return object;
+			}
+			String comMc = String.valueOf(params.get("comMc"));
+			String xzqh = String.valueOf(params.get("xzqh")) ;
+			String xkzbh = String.valueOf(params.get("xkzbh"));
+			JSONArray userInfo = housingConstructionService.getC009(xzqh, xkzbh, comMc);
+			return ResponseHelper.createSuccessResponse(userInfo);
+		} catch (Exception e) {
+			logger.error("getYpjylsgspxkzxxcx接口" + e.getMessage(), e);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+            object.setLastUpdateTime(System.currentTimeMillis());
+            return object ;
+		}
+	}
+	/**
+	 * 药品生产许可证信息查询
+	 */
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/getYpscxkzxxcx", method = RequestMethod.POST)
+	@ApiOperation("药品生产许可证信息查询接口 ")
+	public Response getYpscxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
+			HttpServletResponse response) {
+		 Response<Object> object = new Response<>();
+		try {
+			if (null == params.get("SHXYDM") ) {
+				logger.error("社会信用代码不能为空");
+                object.setCode(500);
+                object.setDescription("请输入社会信用代码");
+                object.setLastUpdateTime(System.currentTimeMillis());
+                return object;
+			}
+			
+			String SHXYDM = (String) params.get("SHXYDM");
+			JSONArray userInfo = housingConstructionService.getC010(SHXYDM);
+			return ResponseHelper.createSuccessResponse(userInfo);
+		} catch (Exception e) {
+			logger.error("药品生产许可证信息查询接口" + e.getMessage(), e);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+            object.setLastUpdateTime(System.currentTimeMillis());
+            return object ;
+		}
+	}
     /**
      * 根据机构名称查询机构详细信息
      * @param params
