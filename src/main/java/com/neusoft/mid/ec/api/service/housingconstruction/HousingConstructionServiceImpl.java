@@ -221,12 +221,12 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	@Override
 	public JSONArray getC007(String xzqh, String xkzbh, String comMc) throws Exception {
 		String currTime = System.currentTimeMillis() + "";
-        LOG.info("getC007 request params>>>>xzqh={},xkzbh={},comMc={},currTime=", xzqh,xkzbh,comMc, currTime);
+        LOG.info("getC007 request params>>>>xzqh={},xkzbh={},comMc={},currTime={}", xzqh,xkzbh,comMc, currTime);
         String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
         // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
         String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
         // 3.调用服务，获取服务的 json 数据。
-        String sign1 = ServiceInvocation.gatewaySignEncode(appId, secretKey, currTime);
+        String sign1 = ServiceInvocation.gatewaySignEncode(spappId, secretKey, currTime);
         Map queryParams = new HashMap(5);
         queryParams.put("xzqh", xzqh);
         queryParams.put("xkzbh", xkzbh);
@@ -257,7 +257,7 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	@Override
 	public JSONArray getC008(String xzqh, String xkzbh, String comMc) throws Exception {
 		String currTime = System.currentTimeMillis() + "";
-        LOG.info("getC008 request params>>>>xzqh={},xkzbh={},comMc={},currTime=", xzqh,xkzbh,comMc, currTime);
+        LOG.info("getC008 request params>>>>xzqh={},xkzbh={},comMc={},currTime={}", xzqh,xkzbh,comMc, currTime);
         String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
         // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
         String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
@@ -293,7 +293,7 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	@Override
 	public JSONArray getC009(String xzqh, String xkzbh, String comMc) throws Exception {
 		String currTime = System.currentTimeMillis() + "";
-		 LOG.info("getC008 request params>>>>xzqh={},xkzbh={},comMc={},currTime=", xzqh,xkzbh,comMc, currTime);
+		 LOG.info("getC008 request params>>>>xzqh={},xkzbh={},comMc={},currTime={}", xzqh,xkzbh,comMc, currTime);
         String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
         // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
         String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
@@ -329,7 +329,7 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	@Override
 	public JSONArray getC010(String SHXYDM) throws Exception {
 		 String currTime = System.currentTimeMillis() + "";
-	        LOG.info("getC010 request params>>>>SHXYDM={},currTime=", SHXYDM, currTime);
+	        LOG.info("getC010 request params>>>>SHXYDM={},currTime={}", SHXYDM, currTime);
 	        String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
 	        // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
 	        String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
