@@ -30,6 +30,7 @@ import me.puras.common.util.ClientListSlice;
 import me.puras.common.util.ListBounds;
 import me.puras.common.util.ListSlice;
 import me.puras.common.util.Pagination;
+import net.sf.json.JSONObject;
 import net.sf.json.xml.XMLSerializer;
 
 /**
@@ -1402,7 +1403,13 @@ public class CountryOrganizationController extends BaseController {
   		   }else {
   			 return ResponseHelper.createResponse(-9999, "查询失败");
   		   }
- 		    net.sf.json.JSONObject resultjson = net.sf.json.JSONObject.fromObject(resutStr);
+  		  net.sf.json.JSONObject resultjson =new JSONObject();
+  		    if(totalCount==0) {
+  		    	
+  		    }else {
+  		    	 resultjson = net.sf.json.JSONObject.fromObject(resutStr);
+  		    }
+ 		    
  		    
  		   int totalPageNum = (totalCount  +  pageSize  - 1) / pageSize;
 		   resultjson.accumulate("totalCount", totalCount);
