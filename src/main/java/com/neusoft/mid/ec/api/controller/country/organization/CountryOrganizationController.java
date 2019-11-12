@@ -1407,7 +1407,15 @@ public class CountryOrganizationController extends BaseController {
   		    if(totalCount==0) {
   		    	
   		    }else {
-  		    	 resultjson = net.sf.json.JSONObject.fromObject(resutStr);
+  		    	if(totalCount!=1) {
+  		    		resultjson = net.sf.json.JSONObject.fromObject(resutStr);
+  		    	}else {
+  		    		net.sf.json.JSONObject resultjson2 = net.sf.json.JSONObject.fromObject(resutStr);
+  		    		net.sf.json.JSONArray aaa=new net.sf.json.JSONArray();
+  		    		aaa.add(resultjson2.getJSONObject("Entry"));
+  		    		resultjson.accumulate("Entry",aaa );
+  		    	}
+  		    	 
   		    }
  		    
  		    
