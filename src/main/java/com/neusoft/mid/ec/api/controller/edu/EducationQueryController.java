@@ -498,8 +498,8 @@ public class EducationQueryController extends BaseController {
             object.setDescription("考生号不能为空");
             return object;
         }
-        if((StringUtils.isBlank(params.get("KSH")==null?null:params.get("BMXH").toString())
-                && StringUtils.isBlank(params.get("KSH")==null?null:params.get("SFZH").toString()))){
+        if((StringUtils.isBlank(params.get("BMXH")==null?null:params.get("BMXH").toString())
+                && StringUtils.isBlank(params.get("SFZH")==null?null:params.get("SFZH").toString()))){
             object.setCode(2);
             object.setDescription("报名序号和身份证号二选一不能为空");
             return object;
