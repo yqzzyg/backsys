@@ -1,5 +1,13 @@
 package com.neusoft.mid.ec.api.service.housingconstruction;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -8,13 +16,6 @@ import com.neusoft.mid.ec.api.serviceInterface.housingconstruction.HousingConstr
 import com.neusoft.mid.ec.api.shareplatform.ServiceInvocation;
 import com.neusoft.mid.ec.api.shareplatform.SymmetricEncoder;
 import com.neusoft.mid.ec.api.util.http.HttpRequestUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /***
  *住建
@@ -28,6 +29,14 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
     private String appId;
     @Value("${sp.appKey}")
     private String appKey;
+    
+    
+    @Value("${spyp.appId}")
+    private String spappId;
+    @Value("${spyp.appKey}")
+    private String spappKey;
+    
+    
     @Value("${sp.url.token}")
     private String tokenUrl;
 
@@ -179,14 +188,14 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	public JSONArray getC006(String SHXYDM) throws Exception {
 		 String currTime = System.currentTimeMillis() + "";
 	        LOG.info("getC006 request params>>>>SHXYDM={},currTime=", SHXYDM, currTime);
-	        String accessToken = ServiceInvocation.getToken(appId, appKey, tokenUrl);
+	        String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
 	        // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
-	        String secretKey = SymmetricEncoder.AESDncode(appKey, accessToken);
+	        String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
 	        // 3.调用服务，获取服务的 json 数据。
-	        String sign1 = ServiceInvocation.gatewaySignEncode(appId, secretKey, currTime);
+	        String sign1 = ServiceInvocation.gatewaySignEncode(spappId, secretKey, currTime);
 	        Map queryParams = new HashMap(5);
 	        queryParams.put("SHXYDM", SHXYDM);
-	        String result = HttpRequestUtil.URLGet(c0006Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(appId, currTime, sign1));
+	        String result = HttpRequestUtil.URLGet(c0006Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(spappId, currTime, sign1));
 
 	        LOG.info("getC006 request  result >>>>{}", result);
 
@@ -213,16 +222,16 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	public JSONArray getC007(String xzqh, String xkzbh, String comMc) throws Exception {
 		String currTime = System.currentTimeMillis() + "";
         LOG.info("getC007 request params>>>>xzqh={},xkzbh={},comMc={},currTime=", xzqh,xkzbh,comMc, currTime);
-        String accessToken = ServiceInvocation.getToken(appId, appKey, tokenUrl);
+        String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
         // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
-        String secretKey = SymmetricEncoder.AESDncode(appKey, accessToken);
+        String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
         // 3.调用服务，获取服务的 json 数据。
         String sign1 = ServiceInvocation.gatewaySignEncode(appId, secretKey, currTime);
         Map queryParams = new HashMap(5);
         queryParams.put("xzqh", xzqh);
         queryParams.put("xkzbh", xkzbh);
         queryParams.put("comMc", comMc);
-        String result = HttpRequestUtil.URLGet(c0007Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(appId, currTime, sign1));
+        String result = HttpRequestUtil.URLGet(c0007Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(spappId, currTime, sign1));
 
         LOG.info("getC007 request  result >>>>{}", result);
 
@@ -249,16 +258,16 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	public JSONArray getC008(String xzqh, String xkzbh, String comMc) throws Exception {
 		String currTime = System.currentTimeMillis() + "";
         LOG.info("getC008 request params>>>>xzqh={},xkzbh={},comMc={},currTime=", xzqh,xkzbh,comMc, currTime);
-        String accessToken = ServiceInvocation.getToken(appId, appKey, tokenUrl);
+        String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
         // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
-        String secretKey = SymmetricEncoder.AESDncode(appKey, accessToken);
+        String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
         // 3.调用服务，获取服务的 json 数据。
-        String sign1 = ServiceInvocation.gatewaySignEncode(appId, secretKey, currTime);
+        String sign1 = ServiceInvocation.gatewaySignEncode(spappId, secretKey, currTime);
         Map queryParams = new HashMap(5);
         queryParams.put("xzqh", xzqh);
         queryParams.put("xkzbh", xkzbh);
         queryParams.put("comMc", comMc);
-        String result = HttpRequestUtil.URLGet(c0008Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(appId, currTime, sign1));
+        String result = HttpRequestUtil.URLGet(c0008Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(spappId, currTime, sign1));
 
         LOG.info("getC008 request  result >>>>{}", result);
 
@@ -285,16 +294,16 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	public JSONArray getC009(String xzqh, String xkzbh, String comMc) throws Exception {
 		String currTime = System.currentTimeMillis() + "";
 		 LOG.info("getC008 request params>>>>xzqh={},xkzbh={},comMc={},currTime=", xzqh,xkzbh,comMc, currTime);
-        String accessToken = ServiceInvocation.getToken(appId, appKey, tokenUrl);
+        String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
         // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
-        String secretKey = SymmetricEncoder.AESDncode(appKey, accessToken);
+        String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
         // 3.调用服务，获取服务的 json 数据。
-        String sign1 = ServiceInvocation.gatewaySignEncode(appId, secretKey, currTime);
+        String sign1 = ServiceInvocation.gatewaySignEncode(spappId, secretKey, currTime);
         Map queryParams = new HashMap(5);
         queryParams.put("xzqh", xzqh);
         queryParams.put("xkzbh", xkzbh);
         queryParams.put("comMc", comMc);
-        String result = HttpRequestUtil.URLGet(c0009Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(appId, currTime, sign1));
+        String result = HttpRequestUtil.URLGet(c0009Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(spappId, currTime, sign1));
 
         LOG.info("getC009 request  result >>>>{}", result);
 
@@ -321,14 +330,14 @@ public class HousingConstructionServiceImpl implements HousingConstructionServic
 	public JSONArray getC010(String SHXYDM) throws Exception {
 		 String currTime = System.currentTimeMillis() + "";
 	        LOG.info("getC010 request params>>>>SHXYDM={},currTime=", SHXYDM, currTime);
-	        String accessToken = ServiceInvocation.getToken(appId, appKey, tokenUrl);
+	        String accessToken = ServiceInvocation.getToken(spappId, spappKey, tokenUrl);
 	        // 2.在获得服务调用秘钥 access_token 后，根据自己的 appKey 使用 AES 解密算法对返回值进行解密，最终获得真正秘钥的过程。
-	        String secretKey = SymmetricEncoder.AESDncode(appKey, accessToken);
+	        String secretKey = SymmetricEncoder.AESDncode(spappKey, accessToken);
 	        // 3.调用服务，获取服务的 json 数据。
-	        String sign1 = ServiceInvocation.gatewaySignEncode(appId, secretKey, currTime);
+	        String sign1 = ServiceInvocation.gatewaySignEncode(spappId, secretKey, currTime);
 	        Map queryParams = new HashMap(5);
 	        queryParams.put("SHXYDM", SHXYDM);
-	        String result = HttpRequestUtil.URLGet(c0010Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(appId, currTime, sign1));
+	        String result = HttpRequestUtil.URLGet(c0010Url, queryParams, "utf-8", ServiceInvocation.buildBaseHeader(spappId, currTime, sign1));
 
 	        LOG.info("getC006 request  result >>>>{}", result);
 

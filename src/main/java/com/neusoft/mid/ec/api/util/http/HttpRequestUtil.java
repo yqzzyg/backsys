@@ -321,7 +321,7 @@ public class HttpRequestUtil {
 	    String response = EMPTY;
 		GetMethod getMethod = null;
 		StringBuffer strtTotalURL = new StringBuffer(EMPTY);
-		if (strtTotalURL.indexOf("?") == -1) {
+		if (url.indexOf("?") == -1) {
 			strtTotalURL.append(url).append("?").append(getUrl(params, enc));
 		} else {
 			strtTotalURL.append(url).append("&").append(getUrl(params, enc));

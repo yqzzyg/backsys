@@ -1366,7 +1366,17 @@ public class CountryOrganizationController extends BaseController {
             object.setLastUpdateTime(System.currentTimeMillis());
             return object;
         }
+        int currentPage=1;
+        int pageSize=10;
+        if (!StringUtils.isBlank(params.get("currentPage")==null?null:params.get("currentPage").toString())) {
+        	currentPage=Integer.valueOf(params.get("currentPage").toString());
+        }
+        if (!StringUtils.isBlank(params.get("pageSize")==null?null:params.get("pageSize").toString())) {
+        	pageSize=Integer.valueOf(params.get("pageSize").toString());
+        }
+        
         String urlPath = environment.getProperty("jg.query.url");
+        urlPath=urlPath+"?pageSize="+pageSize+"&curPage="+currentPage+"&pageSize1="+pageSize+"";
         Map<String, String> tokenParam = new HashMap<>();
         tokenParam.put("entname", String.valueOf(params.get("entname")));
         tokenParam.put("entname2", String.valueOf(params.get("entname2")));
