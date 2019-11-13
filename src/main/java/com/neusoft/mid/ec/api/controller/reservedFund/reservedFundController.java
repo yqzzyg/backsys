@@ -22,7 +22,6 @@ import com.neusoft.mid.ec.api.controller.BaseController;
 import com.neusoft.mid.ec.api.controller.householdadministration.HouseholdAdministrationQueryController;
 import com.neusoft.mid.ec.api.domain.RequestInfo;
 import com.neusoft.mid.ec.api.service.reservedfound.ReservedFoundServiceImpl;
-import com.neusoft.mid.ec.api.service.reservedfound.ReservedFundRepository;
 import com.neusoft.mid.ec.api.serviceInterface.reservedFund.TraderService;
 import com.neusoft.mid.ec.api.serviceInterface.reservedfound.ReservedFoundService;
 import com.neusoft.mid.ec.api.util.RopUtil;
