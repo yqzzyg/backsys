@@ -377,4 +377,13 @@ public class CountryOrganizationServiceImpl implements CountryOrganizationServic
 		list = countryOrganizationRepository.getZtdbbzxxcx(organization, offset, bounds.getLimit());
 		return new ListSlice(total, list);
 	}
+
+	@Override
+	public ListSlice<CountryOrganization> ptgdyxmdQuery(CountryOrganization organization, ListBounds bounds) {
+		List<CountryOrganization> list = new ArrayList<>();
+		int offset = (bounds.getOffset() - 1) * bounds.getLimit();
+		long total = countryOrganizationRepository.getSBCount(organization);
+		list = countryOrganizationRepository.ptgdyxmdQuery(organization, offset, bounds.getLimit());
+		return new ListSlice(total, list);
+	}
 }

@@ -89,4 +89,6 @@ public interface CountryOrganizationService {
 	ListSlice<CountryOrganization> getZzslhjyyilryjfdccx(CountryOrganization organization, ListBounds bounds);
 	
 	ListSlice<CountryOrganization> getZtdbbzxxcx(CountryOrganization organization, ListBounds bounds);
+	
+	ListSlice<CountryOrganization> ptgdyxmdQuery(CountryOrganization organization, ListBounds bounds);
 }
