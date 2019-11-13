@@ -9,7 +9,9 @@ public interface ReservedFoundService {
 
     public Map<String,String> getAuthInfo(String idno);
 
-
+    public Map<String, String> getCommonInfo(Map<String, String> map);
+    
+    public void insertReservedFundContent(Map map);
 
 
 }

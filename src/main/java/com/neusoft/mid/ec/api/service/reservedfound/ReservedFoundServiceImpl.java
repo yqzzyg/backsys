@@ -1,5 +1,6 @@
 package com.neusoft.mid.ec.api.service.reservedfound;
 
+import com.alibaba.fastjson.JSON;
 import com.neusoft.mid.ec.api.serviceInterface.reservedFund.TraderService;
 import com.neusoft.mid.ec.api.serviceInterface.reservedfound.ReservedFoundService;
 import com.neusoft.mid.ec.api.util.RopUtil;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author Administrator
@@ -26,6 +28,10 @@ public class ReservedFoundServiceImpl implements ReservedFoundService {
     private Logger LOG = LoggerFactory.getLogger(ReservedFoundServiceImpl.class);
 
 
+    @Autowired
+    private ReservedFundRepository reservedFundRepository;
+    
+    
     @Autowired
     private Environment environment;
 
@@ -109,6 +115,17 @@ public class ReservedFoundServiceImpl implements ReservedFoundService {
         }
         return null;
     }
+    
+    //获取共用的参数
+    public Map<String, String> getCommonInfo(Map<String, String> map) {
+        
+    	map.put("forgcode", RF_FORGCODE);
+    	map.put("torgcode", RF_TORGCODE);
+    	map.put("certcode", RF_CERTCODE);
+    	map.put("txchannel", RF_TXCHANNEL);
+        
+        return map;
+    }
 
     public static String getAccountStateText(String code) {
 
@@ -144,4 +161,15 @@ public class ReservedFoundServiceImpl implements ReservedFoundService {
 //        System.out.println(new ReservedFoundServiceImpl().getAuthInfo("411281198801134029"));
 //    }
 
+    
+    //将公积金提取的参数传入数据库备份
+    public void insertReservedFundContent(Map map) {
+     
+      Map mapContent=new HashMap();
+      mapContent.put("id", UUID.randomUUID().toString().replace("-", ""));
+      mapContent.put("content", JSON.toJSONString(map));
+      reservedFundRepository.insertReservedFundContent(mapContent);
+      
+    }
+   
 }

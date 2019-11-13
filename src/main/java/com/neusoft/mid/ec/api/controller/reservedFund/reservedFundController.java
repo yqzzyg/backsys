@@ -22,6 +22,7 @@ import com.neusoft.mid.ec.api.controller.BaseController;
 import com.neusoft.mid.ec.api.controller.householdadministration.HouseholdAdministrationQueryController;
 import com.neusoft.mid.ec.api.domain.RequestInfo;
 import com.neusoft.mid.ec.api.service.reservedfound.ReservedFoundServiceImpl;
+import com.neusoft.mid.ec.api.service.reservedfound.ReservedFundRepository;
 import com.neusoft.mid.ec.api.serviceInterface.reservedFund.TraderService;
 import com.neusoft.mid.ec.api.serviceInterface.reservedfound.ReservedFoundService;
 import com.neusoft.mid.ec.api.util.RopUtil;
@@ -35,7 +36,8 @@ public class reservedFundController extends BaseController {
 
     @Autowired
     ReservedFoundService reservedFoundService;
-
+    
+    
     @Autowired
     private JedisClusterUtil jedisClusterUtil;
     @Autowired
@@ -651,7 +653,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("个人基本信息获取 入参：" + map);
-            response = checkparams(response, map);
+            //response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -679,7 +684,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("个人基本信息变更 入参：" + map);
-            response = checkparams(response, map);
+           // response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -704,7 +712,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("获取动态验证码 入参：" + map);
-            response = checkparams(response, map);
+           // response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -728,7 +739,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("校验动态验证码 入参：" + map);
-            response = checkparams(response, map);
+           // response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -759,9 +773,9 @@ public class reservedFundController extends BaseController {
             }
             RequestInfo requestInfo = getRequestInfo(request);
             // test
-            if (StringUtils.isBlank(requestInfo.getIdno())) {
-                requestInfo.setIdno("41030319830103051X");
-            }
+//            if (StringUtils.isBlank(requestInfo.getIdno())) {
+//                requestInfo.setIdno("41030319830103051X");
+//            }
             if (StringUtils.isEmpty(requestInfo.getIdno())) {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
@@ -771,6 +785,9 @@ public class reservedFundController extends BaseController {
             }
             authInfo.put("fetchtype", map.get("fetchtype"));
             authInfo.put("txcode", "ZPC001");
+            //test
+            authInfo.put("codetype", map.get("codetype"));
+            
             logger.info("调用公积金在线提取验证接口入参：" + JSON.toJSONString(authInfo));
             getResponse(authInfo, response);
         } catch (Exception e) {
@@ -792,7 +809,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("办理提取 入参：" + map);
-            response = checkparams(response, map);
+            //response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -800,6 +820,9 @@ public class reservedFundController extends BaseController {
                 logger.info("个人编号为空");
                 return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号为空");
             }
+            
+            reservedFoundService.insertReservedFundContent(map);
+            
             getResponse(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
