@@ -54,14 +54,33 @@ public class EducationQueryController extends BaseController {
         Response<Object> object = new Response<>();
         verifyCode(request,response, String.valueOf(params.get("validateCode")),null);
         try {
+        	//新增支付宝姓名和身份证号Start
+        	//获取header数据
+        	Map<String, Object> mapHeaders = getMapHeaders(request);
+        	//支付宝身份证信息
+            String idno = (String) mapHeaders.get("idno");
+            //支付宝姓名信息
+            String name = (String) mapHeaders.get("name");
+            //验证支付宝信息是否为空
+            if(StringUtils.isBlank(idno)||StringUtils.isBlank(name)) {
+            	object.setCode(2);
+                object.setDescription("内部错误:支付宝信息为空");
+                return object;
+            }
+            //将支付宝信息放入参数
+            params.put("idno",idno);
+            params.put("name",name);
+            //新增支付宝姓名和身份证号end
             logger.info("普通话成绩查询接口[getPthcj]入参" + params);
             object.setLastUpdateTime(System.currentTimeMillis());
-            if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
+            //姓名参数由name变更为username
+            if (StringUtils.isBlank(params.get("username")==null?null:params.get("username").toString())) {
                 object.setCode(2);
                 object.setDescription("姓名不能为空");
                 return object;
             }
-            if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString()) &&
+          //身份证号参数由idno变更为idCard
+            if (StringUtils.isBlank(params.get("idCard")==null?null:params.get("idCard").toString()) &&
                     StringUtils.isBlank(params.get("zkzh")==null?null:params.get("zkzh").toString())) {
                 object.setCode(2);
                 object.setDescription("身份证或准考证号二选一不能为空");
