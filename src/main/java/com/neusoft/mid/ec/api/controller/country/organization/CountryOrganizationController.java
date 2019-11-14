@@ -1171,6 +1171,35 @@ public class CountryOrganizationController extends BaseController {
            }
            return object;
        }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("普通高等院校名单接口")
+       @RequestMapping(value = "/ptgdyxmdQuery", method = RequestMethod.POST)
+       public Response ptgdyxmdQuery(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("院校名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入院校名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg40");
+               ListSlice<CountryOrganization> ls=service.ptgdyxmdQuery(organization, bounds);
+               logger.info("普通高等院校名单接口出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("普通高等院校名单接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
 	/**
 	 * 化妆品许可证信息查询
 	 */
