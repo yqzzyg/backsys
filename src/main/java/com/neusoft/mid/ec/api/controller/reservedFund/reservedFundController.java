@@ -600,23 +600,23 @@ public class reservedFundController extends BaseController {
         Map result = RopUtil.xmlTOMap(xml);
         logger.info("调用接口返回数据" + result);
         response.setDescription(String.valueOf(result.get("resmsg")));
-        if (!"1".equals(result.get("rescode"))) {
-            logger.info("调用公积金接口失败：" + response.getDescription());
-            response.setCode(1);
-            /*if (!"个人账户信息不存在!！".equals(String.valueOf(result.get("resmsg")))
-                || !"非封存状态不可提取！".equals(String.valueOf(result.get("resmsg")))
-                || !"未传入交易编号".equals(String.valueOf(result.get("resmsg")))) {
-                response.setDescription("参数格式不正确");
-            }*/
-            if (15 <= String.valueOf(result.get("resmsg")).length()) {
-                response.setDescription("参数格式不正确");
-            }
-        } else {
+//        if (!"1".equals(result.get("rescode"))) {
+//            logger.info("调用公积金接口失败：" + response.getDescription());
+//            response.setCode(1);
+//            /*if (!"个人账户信息不存在!！".equals(String.valueOf(result.get("resmsg")))
+//                || !"非封存状态不可提取！".equals(String.valueOf(result.get("resmsg")))
+//                || !"未传入交易编号".equals(String.valueOf(result.get("resmsg")))) {
+//                response.setDescription("参数格式不正确");
+//            }*/
+//            if (15 <= String.valueOf(result.get("resmsg")).length()) {
+//                response.setDescription("参数格式不正确");
+//            }
+//        } else {
             response.setCode(0);
-            result.remove("rescode");
-            result.remove("resmsg");
+//            result.remove("rescode");
+//            result.remove("resmsg");
             response.setPayload(result);
-        }
+//        }
     }
 
     private Response<Object> getResponseResult(@RequestBody Map<String, String> map, Response<Object> response)
@@ -784,6 +784,7 @@ public class reservedFundController extends BaseController {
             }
             authInfo.put("fetchtype", map.get("fetchtype"));
             authInfo.put("txcode", "ZPC001");
+            authInfo.put("pertype", map.get("pertype"));
             //test
             authInfo.put("codetype", map.get("codetype"));
             
@@ -1004,7 +1005,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("查询受理机构等相关信息 入参：" + map);
-            response = checkparams(response, map);
+           // response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -1030,7 +1034,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("查询编码名称和编码值 入参：" + map);
-            response = checkparams(response, map);
+           // response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -1052,11 +1059,14 @@ public class reservedFundController extends BaseController {
     // 查询个人银行账户信息
     @RequestMapping("/bankMsg")
     public Response bankMsg(@RequestBody Map<String, String> map) throws Exception {
-        map.put("bankMsg", "1PBL005 ");
+        map.put("bankMsg", "1PBL005");
         Response<Object> response = new Response<>();
         try {
             logger.info("查询个人银行账户信息入参：" + map);
-            response = checkparams(response, map);
+            //response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
@@ -1086,7 +1096,10 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("查询个人公积金缴存账户信息 入参：" + map);
-            response = checkparams(response, map);
+           // response = checkparams(response, map);
+            
+            map=reservedFoundService.getCommonInfo(map);
+            
             if (0 != response.getCode()) {
                 return response;
             }
