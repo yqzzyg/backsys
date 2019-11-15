@@ -3,7 +3,7 @@
 <mapper namespace="com.neusoft.mid.ec.api.service.reservedfound.ReservedFundRepository">
     
 <insert id="insertReservedFundContent" parameterType="Map">
-	insert into luoyang_reservedfund(id,content,insert_date)
+	insert into reservedfund_luoyang(id,content,insert_date)
 	values(#{id},#{content},now())
 
 </insert>
