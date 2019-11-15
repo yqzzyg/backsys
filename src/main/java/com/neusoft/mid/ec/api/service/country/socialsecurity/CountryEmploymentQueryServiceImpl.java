@@ -185,7 +185,9 @@ public class CountryEmploymentQueryServiceImpl implements CountryEmploymentQuery
                             jsonArray.remove(i);
                             jsonArray.add(i, jsonObject);
                         }
-                        data = jsonArray;
+                        if(!jsonArray.isEmpty()) {
+                        	data = jsonArray;
+                        }
                         //end
                     } else {
                         data = replaceCode(com.alibaba.fastjson.JSON.parse(jsonObj.get("body").toString()));
