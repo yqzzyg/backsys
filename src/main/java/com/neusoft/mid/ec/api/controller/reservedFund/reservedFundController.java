@@ -770,26 +770,26 @@ public class reservedFundController extends BaseController {
                 logger.info("提取原因为空");
                 return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "提取原因为空");
             }
-            RequestInfo requestInfo = getRequestInfo(request);
-            // test
-//            if (StringUtils.isBlank(requestInfo.getIdno())) {
-//                requestInfo.setIdno("41030319830103051X");
-//            }
-            if (StringUtils.isEmpty(requestInfo.getIdno())) {
-                return ResponseHelper.createResponse(500, "身份证号码不能为空");
-            }
-            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-            if (null == authInfo && authInfo.isEmpty()) {
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
-            }
-            authInfo.put("fetchtype", map.get("fetchtype"));
-            authInfo.put("txcode", "ZPC001");
-            authInfo.put("pertype", map.get("pertype"));
-            //test
-            authInfo.put("codetype", map.get("codetype"));
             
-            logger.info("调用公积金在线提取验证接口入参：" + JSON.toJSONString(authInfo));
-            getResponse(authInfo, response);
+           
+            map.put("txcode", "ZPC001");
+            map=reservedFoundService.getCommonInfo(map);
+            
+//            RequestInfo requestInfo = getRequestInfo(request);
+//            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+//                return ResponseHelper.createResponse(500, "身份证号码不能为空");
+//            }
+//            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+//            if (null == authInfo && authInfo.isEmpty()) {
+//                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+//            }
+//            authInfo.put("fetchtype", map.get("fetchtype"));
+//            authInfo.put("txcode", "ZPC001");
+//            authInfo.put("pertype", map.get("pertype"));
+                    
+            
+            logger.info("调用公积金在线提取验证接口入参：" + JSON.toJSONString(map));
+            getResponse(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
