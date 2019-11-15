@@ -770,10 +770,13 @@ public class reservedFundController extends BaseController {
                 logger.info("提取原因为空");
                 return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "提取原因为空");
             }
-            
            
             map.put("txcode", "ZPC001");
             map=reservedFoundService.getCommonInfo(map);
+            
+            if (0 != response.getCode()) {
+                return response;
+            }
             
 //            RequestInfo requestInfo = getRequestInfo(request);
 //            if (StringUtils.isEmpty(requestInfo.getIdno())) {
