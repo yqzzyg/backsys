@@ -1,5 +1,7 @@
 package com.neusoft.mid.ec.api.service.country.socialsecurity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -167,6 +169,24 @@ public class CountryEmploymentQueryServiceImpl implements CountryEmploymentQuery
                         String str = StringEscapeUtils.unescapeXml(jsonObj.get("body").toString()).replaceAll(Matcher.quoteReplacement("&rt;"), ">");
                         LOG.info("去除html标签后的数据={}", com.neusoft.mid.ec.api.util.StringUtils.removeHtmlTag(str));
                         data = com.alibaba.fastjson.JSON.parse(com.neusoft.mid.ec.api.util.StringUtils.removeHtmlTag(str));
+                        //新增办事要件更改
+                        com.alibaba.fastjson.JSONArray jsonArray = new com.alibaba.fastjson.JSONArray();
+                        if(data instanceof com.alibaba.fastjson.JSONArray){
+                                if(!((com.alibaba.fastjson.JSONArray) data).isEmpty()){
+                                    jsonArray =  ((com.alibaba.fastjson.JSONArray) data).getJSONArray(0);
+                                }
+                        }
+                        for(int i = 0 ;i<jsonArray.size();i++){
+                            com.alibaba.fastjson.JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            if(!jsonObject.isEmpty() && jsonObject.containsKey("办事要件")){
+                            	String value =  jsonObject.getString("办事要件");
+                                jsonObject.put("办事要件",value == null?"":value +"按照各地市标准提供");
+                            }
+                            jsonArray.remove(i);
+                            jsonArray.add(i, jsonObject);
+                        }
+                        data = jsonArray;
+                        //end
                     } else {
                         data = replaceCode(com.alibaba.fastjson.JSON.parse(jsonObj.get("body").toString()));
                     }
@@ -204,8 +224,9 @@ public class CountryEmploymentQueryServiceImpl implements CountryEmploymentQuery
      *
      * @param json
      * @return
+     * @throws ParseException 
      */
-    private Object replaceCode(Object json) {
+    private Object replaceCode(Object json) throws ParseException {
         com.alibaba.fastjson.JSONArray jsonArray = new com.alibaba.fastjson.JSONArray();
         if(json instanceof com.alibaba.fastjson.JSONArray){
                 if(!((com.alibaba.fastjson.JSONArray) json).isEmpty()){
@@ -234,10 +255,21 @@ public class CountryEmploymentQueryServiceImpl implements CountryEmploymentQuery
                 String code =  jsonObject.getString("失业注销原因");
                 jsonObject.put("失业注销原因",destroy_unemp_reason.get(code));
             }
+            //新增时间截取
+            if(!jsonObject.isEmpty() && jsonObject.containsKey("发证日期")){
+                String value =  jsonObject.getString("发证日期");
+                SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+                jsonObject.put("发证日期",sdf.format(sdf.parse(value)));
+            }
+            //end
             if(!jsonObject.isEmpty() && jsonObject.containsKey("有效标志")){
                 String code =  jsonObject.getString("有效标志");
                 if("1".equals(code)){
                     jsonObject.put("有效标志","有效");
+                    //新增移除条件
+                    jsonObject.remove("注销经办机构");
+                    jsonObject.remove("注销经办日期");
+                    //end
                 }else{
                     jsonObject.put("有效标志","无效");
                 }

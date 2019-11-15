@@ -735,6 +735,19 @@
         </where>
 		 limit #{offset},#{limit}
 	</select>
-	
+	<select id="ptgdyxmdQuery" resultType="CountryOrganization">
+		select
+			id,
+			AJG100,
+		 	AJG101
+		from
+			jg40
+			<where>
+            <if test="record.AJG004!= null and record.AJG004!=''">
+                AJG101 like CONCAT('%',#{record.AJG004},'%')
+            </if>
+        </where>
+		 limit #{offset},#{limit}
+	</select>
 	
 </mapper>

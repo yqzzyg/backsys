@@ -93,5 +93,6 @@ public interface CountryOrganizationRepository {
 	List<CountryOrganization> getZzslhjyyilryjfdccx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 	
 	List<CountryOrganization> getZtdbbzxxcx(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
-
+	
+	List<CountryOrganization> ptgdyxmdQuery(@Param(value = "record")CountryOrganization organization,@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 }

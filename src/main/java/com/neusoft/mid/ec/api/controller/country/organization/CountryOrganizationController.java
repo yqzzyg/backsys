@@ -30,6 +30,7 @@ import me.puras.common.util.ClientListSlice;
 import me.puras.common.util.ListBounds;
 import me.puras.common.util.ListSlice;
 import me.puras.common.util.Pagination;
+import net.sf.json.JSONObject;
 import net.sf.json.xml.XMLSerializer;
 
 /**
@@ -1170,6 +1171,35 @@ public class CountryOrganizationController extends BaseController {
            }
            return object;
        }
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@ApiOperation("普通高等院校名单接口")
+       @RequestMapping(value = "/ptgdyxmdQuery", method = RequestMethod.POST)
+       public Response ptgdyxmdQuery(CountryOrganization organization, Pagination pagination) {
+           Response<ListSlice<CountryOrganization>> object = new Response<>();
+           try {
+               if (StringUtils.isBlank(organization.getAJG004())) {
+                   logger.error("院校名称不能为空");
+                   object.setCode(500);
+                   object.setDescription("请输入院校名称");
+                   object.setLastUpdateTime(System.currentTimeMillis());
+                   return object;
+               }
+               if (0 >= pagination.getCurrentPage()) {
+                   pagination.setCurrentPage(1);
+               }
+               ListBounds bounds = new ListBounds(pagination.getCurrentPage(), pagination.getPageSize());
+               organization.setTableName("jg40");
+               ListSlice<CountryOrganization> ls=service.ptgdyxmdQuery(organization, bounds);
+               logger.info("普通高等院校名单接口出参："+ JSON.toJSONString(ls));
+               return ResponseHelper.createSuccessResponse(new ClientListSlice(ls, bounds.getOffset(), bounds.getLimit()));
+           } catch (Exception e) {
+               logger.error("普通高等院校名单接口异常" + e.getMessage(), e);
+               object.setCode(500);
+               object.setDescription("内部服务错误");
+               object.setLastUpdateTime(System.currentTimeMillis());
+           }
+           return object;
+       }
 	/**
 	 * 化妆品许可证信息查询
 	 */
@@ -1374,33 +1404,57 @@ public class CountryOrganizationController extends BaseController {
         if (!StringUtils.isBlank(params.get("pageSize")==null?null:params.get("pageSize").toString())) {
         	pageSize=Integer.valueOf(params.get("pageSize").toString());
         }
-        
+        String urlPathCount = environment.getProperty("jg.queryCount.url");
         String urlPath = environment.getProperty("jg.query.url");
         urlPath=urlPath+"?pageSize="+pageSize+"&curPage="+currentPage+"&pageSize1="+pageSize+"";
         Map<String, String> tokenParam = new HashMap<>();
         tokenParam.put("entname", String.valueOf(params.get("entname")));
         tokenParam.put("entname2", String.valueOf(params.get("entname2")));
+        //返回结果总数
+        String resultCount = HttpRequestUtil.URLGet(urlPathCount, tokenParam, "utf-8");
+        logger.info("根据机构名称查询机构详细信息接口返回查询总数："+resultCount);
+        //返回详细记录
         String resultStr = HttpRequestUtil.URLGet(urlPath, tokenParam, "utf-8");
+       
         //String resultStr = "";
-        if (StringUtils.isEmpty(resultStr)) {
+        if (StringUtils.isEmpty(resultStr)||StringUtils.isEmpty(resultCount)) {
             return ResponseHelper.createResponse(-9999, "查询失败");
-			/*
-			 * resultStr ="<Entries xmlns=\"http://bigdata.h3c.com/dataservice\">\r\n" +
-			 * "<Entry>\r\n" + "<uniscid>124109277631447315</uniscid>\r\n" +
-			 * "<entname>台前县夹河乡中心学校</entname>\r\n" + "<address>河南省台前县夹河乡夹河村</address>\r\n" +
-			 * "<legal_representative>田仁万</legal_representative>\r\n" +
-			 * "<institutions_state>正常</institutions_state>\r\n" +
-			 * "<institutions_date>2005-10-20</institutions_date>\r\n" +
-			 * "<bodytype>事业</bodytype>\r\n" + "<opscope/>\r\n" + "<linkmanname/>\r\n" +
-			 * "<linkmanphone/>\r\n" + "</Entry>\r\n" + "</Entries>\r\n" + "";
-			 */
         }
         	XMLSerializer xmlSerializer = new XMLSerializer();
+        	String resutStr1 = xmlSerializer.read(resultCount).toString();
+   		    resutStr1 = resutStr1.replaceAll("null", "\"\"");
  		    String resutStr = xmlSerializer.read(resultStr).toString();
   		    resutStr = resutStr.replaceAll("null", "\"\"");
- 		    net.sf.json.JSONObject resultjson = net.sf.json.JSONObject.fromObject(resutStr);
+  		   net.sf.json.JSONObject resultjson1 = net.sf.json.JSONObject.fromObject(resutStr1);
+  		   int totalCount=0;
+  		   if(resultjson1.getJSONObject("Entry").has("count")){
+  			 totalCount=Integer.valueOf(resultjson1.getJSONObject("Entry").getString("count"));
+  		   }else {
+  			 return ResponseHelper.createResponse(-9999, "查询失败");
+  		   }
+  		  net.sf.json.JSONObject resultjson =new JSONObject();
+  		    if(totalCount==0) {
+  		    	
+  		    }else {
+  		    	if(totalCount!=1) {
+  		    		resultjson = net.sf.json.JSONObject.fromObject(resutStr);
+  		    	}else {
+  		    		net.sf.json.JSONObject resultjson2 = net.sf.json.JSONObject.fromObject(resutStr);
+  		    		net.sf.json.JSONArray aaa=new net.sf.json.JSONArray();
+  		    		aaa.add(resultjson2.getJSONObject("Entry"));
+  		    		resultjson.accumulate("Entry",aaa );
+  		    	}
+  		    	 
+  		    }
+ 		    
+ 		    
+ 		   int totalPageNum = (totalCount  +  pageSize  - 1) / pageSize;
+		   resultjson.accumulate("totalCount", totalCount);
+		   resultjson.accumulate("totalPages", totalPageNum);
+ 		   resultjson.accumulate("currentPage", currentPage);
  		    object.setCode(0);
  	        object.setPayload(resultjson);
+ 	        
  	        long endTime = System.currentTimeMillis();
  	        object.setLastUpdateTime(endTime);
  	        object.setDescription("查询成功");
