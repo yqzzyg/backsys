@@ -807,12 +807,19 @@ public class reservedFundController extends BaseController {
      * 2.办理提取
      */
     @RequestMapping("/transactionExtract")
-    public Response transactionExtract(@RequestBody Map<String, String> map) throws Exception {
+    public Response transactionExtract(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
         map.put("txcode", "EMB0017");
         Response<Object> response = new Response<>();
         try {
             logger.info("办理提取 入参：" + map);
             //response = checkparams(response, map);
+            
+          RequestInfo requestInfo = getRequestInfo(request);
+          if (StringUtils.isEmpty(requestInfo.getIdno())) {
+              return ResponseHelper.createResponse(500, "身份证号码不能为空");
+          }
+          
+          map.put("idno", requestInfo.getIdno());
             
             map=reservedFoundService.getCommonInfo(map);
             

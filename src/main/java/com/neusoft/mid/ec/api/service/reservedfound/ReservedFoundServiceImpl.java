@@ -168,6 +168,28 @@ public class ReservedFoundServiceImpl implements ReservedFoundService {
       Map mapContent=new HashMap();
       mapContent.put("id", UUID.randomUUID().toString().replace("-", ""));
       mapContent.put("content", JSON.toJSONString(map));
+      mapContent.put("idno", map.get("idno"));
+      mapContent.put("buscode", map.get("buscode"));
+      mapContent.put("percode", map.get("percode"));
+      mapContent.put("corpcode", map.get("corpcode"));
+      mapContent.put("fetchrea", map.get("fetchrea"));
+      mapContent.put("fetchtype", map.get("fetchtype"));
+      mapContent.put("curcode", map.get("curcode"));
+      mapContent.put("curname", map.get("curname"));
+      mapContent.put("curdepcode", map.get("curdepcode"));
+      mapContent.put("isdelacc", map.get("isdelacc"));
+      mapContent.put("auditflag", map.get("auditflag"));
+      mapContent.put("relno", map.get("relno"));
+      mapContent.put("allrequiremny", map.get("allrequiremny"));
+      mapContent.put("allstandmny", map.get("allstandmny"));
+      mapContent.put("houseno", map.get("houseno"));
+      mapContent.put("isAuto", map.get("isAuto"));
+      mapContent.put("source", map.get("source"));
+      mapContent.put("bkcard", map.get("bkcard"));
+      mapContent.put("yhhb", map.get("yhhb"));
+      mapContent.put("bkcardname", map.get("bkcardname"));
+      
+      
       reservedFundRepository.insertReservedFundContent(mapContent);
       
     }
