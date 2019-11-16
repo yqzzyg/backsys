@@ -647,7 +647,8 @@ public class reservedFundController extends BaseController {
      * 个人基本信息获取
      */
     @RequestMapping("/userMessage")
-    public Response userMessage(@RequestBody Map<String, String> map) throws Exception {
+    public Response userMessage( HttpServletRequest request) throws Exception {
+    	Map<String, String> map=new HashMap<>();
         map.put("txcode", "PMC001");
         Response<Object> response = new Response<>();
         try {
@@ -659,10 +660,22 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
-            if (null == map.get("percode") || StringUtils.isBlank(map.get("percode"))) {
-                logger.info("个人编号/证件号码/个人存款账户号码为空");
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号/证件号码/个人存款账户号码为空");
-            }
+//            if (null == map.get("percode") || StringUtils.isBlank(map.get("percode"))) {
+//                logger.info("个人编号/证件号码/个人存款账户号码为空");
+//                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号/证件号码/个人存款账户号码为空");
+//            }
+            
+          RequestInfo requestInfo = getRequestInfo(request);
+          if (StringUtils.isEmpty(requestInfo.getIdno())) {
+              return ResponseHelper.createResponse(500, "身份证号码不能为空");
+          }
+          Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+          if (null == authInfo && authInfo.isEmpty()) {
+              return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+          }
+          
+          map.put("percode", authInfo.get("percode"));
+          
             getResponse(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
@@ -678,7 +691,7 @@ public class reservedFundController extends BaseController {
      * 2.个人基本信息变更
      */
     @RequestMapping("/changeUser")
-    public Response changeUser(@RequestBody Map<String, String> map) throws Exception {
+    public Response changeUser(@RequestBody Map<String, String> map,HttpServletRequest request) throws Exception {
         map.put("txcode", "PMB0001");
         Response<Object> response = new Response<>();
         try {
@@ -690,6 +703,18 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
+            
+            RequestInfo requestInfo = getRequestInfo(request);
+            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+                return ResponseHelper.createResponse(500, "身份证号码不能为空");
+            }
+            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+            if (null == authInfo && authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            }
+            
+            map.put("percode", authInfo.get("percode"));
+            
             getResponse(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
@@ -790,6 +815,16 @@ public class reservedFundController extends BaseController {
 //            authInfo.put("txcode", "ZPC001");
 //            authInfo.put("pertype", map.get("pertype"));
                     
+            RequestInfo requestInfo = getRequestInfo(request);
+            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+                return ResponseHelper.createResponse(500, "身份证号码不能为空");
+            }
+            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+            if (null == authInfo && authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            }
+            
+            map.put("percode", authInfo.get("percode"));
             
             logger.info("调用公积金在线提取验证接口入参：" + JSON.toJSONString(map));
             getResponse(map, response);
@@ -811,7 +846,7 @@ public class reservedFundController extends BaseController {
         map.put("txcode", "EMB0017");
         Response<Object> response = new Response<>();
         try {
-            logger.info("办理提取 入参：" + map);
+            logger.info("办理提取入参：" + map);
             //response = checkparams(response, map);
             
           RequestInfo requestInfo = getRequestInfo(request);
@@ -826,10 +861,14 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
-            if (null == map.get("percode") || StringUtils.isBlank(map.get("percode"))) {
-                logger.info("个人编号为空");
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号为空");
+           
+            
+            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+            if (null == authInfo && authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
             }
+            
+            map.put("percode", authInfo.get("percode"));
             
             reservedFoundService.insertReservedFundContent(map);
             
@@ -1010,7 +1049,7 @@ public class reservedFundController extends BaseController {
      * 查询受理机构等相关信息
      */
     @RequestMapping("/acceptingInstitution")
-    public Response acceptingInstitution(@RequestBody Map<String, String> map) throws Exception {
+    public Response acceptingInstitution(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
         map.put("txcode", "ZPC002");
         Response<Object> response = new Response<>();
         try {
@@ -1022,10 +1061,22 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
-            if (null == map.get("percode") || StringUtils.isBlank(map.get("percode"))) {
-                logger.info("个人编号/证件号码/个人存款账户号码为空");
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号/证件号码/个人存款账户号码为空");
+//            if (null == map.get("percode") || StringUtils.isBlank(map.get("percode"))) {
+//                logger.info("个人编号/证件号码/个人存款账户号码为空");
+//                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号/证件号码/个人存款账户号码为空");
+//            }
+            
+            RequestInfo requestInfo = getRequestInfo(request);
+            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+                return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
+            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+            if (null == authInfo && authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            }
+            
+            map.put("percode", authInfo.get("percode"));
+            
             getResponse(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
@@ -1068,8 +1119,8 @@ public class reservedFundController extends BaseController {
 
     // 查询个人银行账户信息
     @RequestMapping("/bankMsg")
-    public Response bankMsg(@RequestBody Map<String, String> map) throws Exception {
-        map.put("bankMsg", "1PBL005");
+    public Response bankMsg(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
+        map.put("txcode", "1PBL005");
         Response<Object> response = new Response<>();
         try {
             logger.info("查询个人银行账户信息入参：" + map);
@@ -1080,14 +1131,22 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
-            if (null == map.get("percode") || StringUtils.isBlank(map.get("percode"))) {
-                logger.info("个人编号为空");
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号为空");
-            }
+            
             if (null == map.get("idcard") || StringUtils.isBlank(map.get("idcard"))) {
                 logger.info("证件号码为空");
                 return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "证件号码为空");
             }
+            
+            RequestInfo requestInfo = getRequestInfo(request);
+            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+                return ResponseHelper.createResponse(500, "身份证号码不能为空");
+            }
+            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+            if (null == authInfo && authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            }
+            
+            map.put("percode", authInfo.get("percode"));
             getResponse(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
@@ -1101,7 +1160,7 @@ public class reservedFundController extends BaseController {
 
     // 查询个人公积金缴存账户信息
     @RequestMapping("/depositeMsg")
-    public Response depositeMsg(@RequestBody Map<String, String> map) throws Exception {
+    public Response depositeMsg(@RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
         map.put("txcode", "PMC002");
         Response<Object> response = new Response<>();
         try {
@@ -1113,14 +1172,23 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
-            if (null == map.get("percode") || StringUtils.isBlank(map.get("percode"))) {
-                logger.info("个人编号为空");
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "个人编号为空");
-            }
+            
             if (null == map.get("idcard") || StringUtils.isBlank(map.get("idcard"))) {
                 logger.info("证件号码为空");
                 return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "证件号码为空");
             }
+            
+            RequestInfo requestInfo = getRequestInfo(request);
+            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+                return ResponseHelper.createResponse(500, "身份证号码不能为空");
+            }
+            Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
+            if (null == authInfo && authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            }
+            
+            map.put("percode", authInfo.get("percode"));
+            
             getResponse(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
