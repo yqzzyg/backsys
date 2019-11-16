@@ -257,11 +257,16 @@ public class CountryEmploymentQueryServiceImpl implements CountryEmploymentQuery
                 String code =  jsonObject.getString("失业注销原因");
                 jsonObject.put("失业注销原因",destroy_unemp_reason.get(code));
             }
-            //新增时间截取
+          //新增时间截取
             if(!jsonObject.isEmpty() && jsonObject.containsKey("发证日期")){
                 String value =  jsonObject.getString("发证日期");
                 SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
                 jsonObject.put("发证日期",sdf.format(sdf.parse(value)));
+            }
+            if(!jsonObject.isEmpty() && jsonObject.containsKey("经办日期")){
+                String value =  jsonObject.getString("经办日期");
+                SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+                jsonObject.put("经办日期",sdf.format(sdf.parse(value)));
             }
             //end
             if(!jsonObject.isEmpty() && jsonObject.containsKey("有效标志")){
@@ -274,6 +279,11 @@ public class CountryEmploymentQueryServiceImpl implements CountryEmploymentQuery
                     //end
                 }else{
                     jsonObject.put("有效标志","无效");
+                    if(!jsonObject.isEmpty() && jsonObject.containsKey("注销经办日期")){
+                        String value =  jsonObject.getString("注销经办日期");
+                        SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd");
+                        jsonObject.put("注销经办日期",sdf.format(sdf.parse(value)));
+                    }
                 }
             }
         }
