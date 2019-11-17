@@ -791,10 +791,6 @@ public class reservedFundController extends BaseController {
         Response<Object> response = new Response<>();
         try {
             logger.info("公积金在线提取验证 入参：" + map);
-            if (null == map.get("fetchtype") || StringUtils.isBlank(map.get("fetchtype"))) {
-                logger.info("提取原因为空");
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "提取原因为空");
-            }
            
             map.put("txcode", "ZPC001");
             map=reservedFoundService.getCommonInfo(map);

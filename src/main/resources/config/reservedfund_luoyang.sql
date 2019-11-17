@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80011
 File Encoding         : 65001
 
-Date: 2019-11-16 11:09:44
+Date: 2019-11-17 13:14:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,5 +43,6 @@ CREATE TABLE `reservedfund_luoyang` (
   `bkcard` varchar(100) DEFAULT NULL,
   `yhhb` varchar(100) DEFAULT NULL,
   `bkcardname` varchar(100) DEFAULT NULL,
+  `skzhmc` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

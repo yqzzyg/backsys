@@ -5,10 +5,10 @@
 <insert id="insertReservedFundContent" parameterType="Map">
 	insert into reservedfund_luoyang(id,content,insert_date,idno,buscode,percode,corpcode,fetchrea,fetchtype
 		,curcode,curname,curdepcode,isdelacc,auditflag,relno,allrequiremny,allstandmny,houseno,isAuto
-		,source,bkcard,yhhb,bkcardname)
+		,source,bkcard,yhhb,bkcardname,skzhmc)
 	values(#{id},#{content},now(),#{idno},#{buscode},#{percode},#{corpcode},#{fetchrea},#{fetchtype}
 		,#{curcode},#{curname},#{curdepcode},#{isdelacc},#{auditflag},#{relno},#{allrequiremny}
-		,#{allstandmny},#{houseno},#{isAuto},#{source},#{bkcard},#{yhhb},#{bkcardname})
+		,#{allstandmny},#{houseno},#{isAuto},#{source},#{bkcard},#{yhhb},#{bkcardname},#{skzhmc})
 
 </insert>
 

@@ -188,7 +188,7 @@ public class ReservedFoundServiceImpl implements ReservedFoundService {
       mapContent.put("bkcard", map.get("bkcard"));
       mapContent.put("yhhb", map.get("yhhb"));
       mapContent.put("bkcardname", map.get("bkcardname"));
-      
+      mapContent.put("skzhmc", map.get("skzhmc"));
       
       reservedFundRepository.insertReservedFundContent(mapContent);
       
