@@ -670,10 +670,10 @@ public class reservedFundController extends BaseController {
               return ResponseHelper.createResponse(500, "身份证号码不能为空");
           }
           Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-          if (null == authInfo && authInfo.isEmpty()) {
-              return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+          if (null == authInfo || authInfo.isEmpty()) {
+              return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到percode个人编号");
           }
-          
+         
           map.put("percode", authInfo.get("percode"));
           
             getResponse(map, response);
@@ -709,10 +709,11 @@ public class reservedFundController extends BaseController {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
             Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-            if (null == authInfo && authInfo.isEmpty()) {
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            if (null == authInfo || authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到percode个人编号");
             }
             
+           
             map.put("percode", authInfo.get("percode"));
             
             getResponse(map, response);
@@ -816,9 +817,11 @@ public class reservedFundController extends BaseController {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
             Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-            if (null == authInfo && authInfo.isEmpty()) {
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            if (null == authInfo || authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到percode个人编号");
             }
+            
+            
             
             map.put("percode", authInfo.get("percode"));
             
@@ -860,9 +863,11 @@ public class reservedFundController extends BaseController {
            
             
             Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-            if (null == authInfo && authInfo.isEmpty()) {
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            if (null == authInfo || authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到percode个人编号");
             }
+            
+            
             
             map.put("percode", authInfo.get("percode"));
             
@@ -1067,9 +1072,11 @@ public class reservedFundController extends BaseController {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
             Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-            if (null == authInfo && authInfo.isEmpty()) {
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            if (null == authInfo || authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到percode个人编号");
             }
+            
+           
             
             map.put("percode", authInfo.get("percode"));
             
@@ -1138,9 +1145,10 @@ public class reservedFundController extends BaseController {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
             Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-            if (null == authInfo && authInfo.isEmpty()) {
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            if (null == authInfo || authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到percode个人编号");
             }
+            
             
             map.put("percode", authInfo.get("percode"));
             getResponse(map, response);
@@ -1179,9 +1187,10 @@ public class reservedFundController extends BaseController {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
             Map<String, String> authInfo = reservedFoundService.getAuthInfo(requestInfo.getIdno());
-            if (null == authInfo && authInfo.isEmpty()) {
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到个人编号");
+            if (null == authInfo || authInfo.isEmpty()) {
+                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "未获取到percode个人编号");
             }
+            
             
             map.put("percode", authInfo.get("percode"));
             
