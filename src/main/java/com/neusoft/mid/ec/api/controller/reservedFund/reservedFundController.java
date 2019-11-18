@@ -647,8 +647,8 @@ public class reservedFundController extends BaseController {
      * 个人基本信息获取
      */
     @RequestMapping("/userMessage")
-    public Response userMessage( HttpServletRequest request) throws Exception {
-    	Map<String, String> map=new HashMap<>();
+    public Response userMessage( @RequestBody Map<String, String> map, HttpServletRequest request) throws Exception {
+    	
         map.put("txcode", "PMC001");
         Response<Object> response = new Response<>();
         try {
