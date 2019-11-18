@@ -183,7 +183,7 @@ public class ReservedFoundServiceImpl implements ReservedFoundService {
       mapContent.put("allrequiremny", map.get("allrequiremny"));
       mapContent.put("allstandmny", map.get("allstandmny"));
       mapContent.put("houseno", map.get("houseno"));
-      mapContent.put("isAuto", map.get("isAuto"));
+      mapContent.put("isAuto", map.get("isauto"));
       mapContent.put("source", map.get("source"));
       mapContent.put("bkcard", map.get("bkcard"));
       mapContent.put("yhhb", map.get("yhhb"));
