@@ -600,23 +600,23 @@ public class reservedFundController extends BaseController {
         Map result = RopUtil.xmlTOMap(xml);
         logger.info("调用接口返回数据" + result);
         response.setDescription(String.valueOf(result.get("resmsg")));
-//        if (!"1".equals(result.get("rescode"))) {
-//            logger.info("调用公积金接口失败：" + response.getDescription());
-//            response.setCode(1);
-//            /*if (!"个人账户信息不存在!！".equals(String.valueOf(result.get("resmsg")))
-//                || !"非封存状态不可提取！".equals(String.valueOf(result.get("resmsg")))
-//                || !"未传入交易编号".equals(String.valueOf(result.get("resmsg")))) {
-//                response.setDescription("参数格式不正确");
-//            }*/
-//            if (15 <= String.valueOf(result.get("resmsg")).length()) {
-//                response.setDescription("参数格式不正确");
-//            }
-//        } else {
+        if (!"1".equals(result.get("rescode"))) {
+            logger.info("调用公积金接口失败：" + response.getDescription());
+            response.setCode(1);
+            /*if (!"个人账户信息不存在!！".equals(String.valueOf(result.get("resmsg")))
+                || !"非封存状态不可提取！".equals(String.valueOf(result.get("resmsg")))
+                || !"未传入交易编号".equals(String.valueOf(result.get("resmsg")))) {
+                response.setDescription("参数格式不正确");
+            }*/
+            if (15 <= String.valueOf(result.get("resmsg")).length()) {
+                response.setDescription("参数格式不正确");
+            }
+        } else {
             response.setCode(0);
-//            result.remove("rescode");
-//            result.remove("resmsg");
+            result.remove("rescode");
+            result.remove("resmsg");
             response.setPayload(result);
-//        }
+        }
     }
 
     private Response<Object> getResponseResult(@RequestBody Map<String, String> map, Response<Object> response)
@@ -676,7 +676,7 @@ public class reservedFundController extends BaseController {
          
           map.put("percode", authInfo.get("percode"));
           
-            getResponse(map, response);
+          getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -716,7 +716,7 @@ public class reservedFundController extends BaseController {
            
             map.put("percode", authInfo.get("percode"));
             
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -744,7 +744,7 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -771,7 +771,7 @@ public class reservedFundController extends BaseController {
             if (0 != response.getCode()) {
                 return response;
             }
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -800,6 +800,8 @@ public class reservedFundController extends BaseController {
                 return response;
             }
             
+            
+            
 //            RequestInfo requestInfo = getRequestInfo(request);
 //            if (StringUtils.isEmpty(requestInfo.getIdno())) {
 //                return ResponseHelper.createResponse(500, "身份证号码不能为空");
@@ -813,6 +815,12 @@ public class reservedFundController extends BaseController {
 //            authInfo.put("pertype", map.get("pertype"));
                     
             RequestInfo requestInfo = getRequestInfo(request);
+            
+         // test
+//            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+//                requestInfo.setIdno("410304195802212517");
+//            }
+            
             if (StringUtils.isEmpty(requestInfo.getIdno())) {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
@@ -826,7 +834,7 @@ public class reservedFundController extends BaseController {
             map.put("percode", authInfo.get("percode"));
             
             logger.info("调用公积金在线提取验证接口入参：" + JSON.toJSONString(map));
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -849,6 +857,13 @@ public class reservedFundController extends BaseController {
             //response = checkparams(response, map);
             
           RequestInfo requestInfo = getRequestInfo(request);
+          
+       // test
+//          if (StringUtils.isEmpty(requestInfo.getIdno())) {
+//              requestInfo.setIdno("410304195802212517");
+//          }
+          
+          
           if (StringUtils.isEmpty(requestInfo.getIdno())) {
               return ResponseHelper.createResponse(500, "身份证号码不能为空");
           }
@@ -870,10 +885,11 @@ public class reservedFundController extends BaseController {
             
             
             map.put("percode", authInfo.get("percode"));
+            map.put("curcode", authInfo.get("percode"));
             
             reservedFoundService.insertReservedFundContent(map);
             
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -1080,7 +1096,7 @@ public class reservedFundController extends BaseController {
             
             map.put("percode", authInfo.get("percode"));
             
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -1109,7 +1125,7 @@ public class reservedFundController extends BaseController {
                 logger.info("编码类型为空");
                 return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "编码类型为空");
             }
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -1151,7 +1167,7 @@ public class reservedFundController extends BaseController {
             
             
             map.put("percode", authInfo.get("percode"));
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -1177,12 +1193,18 @@ public class reservedFundController extends BaseController {
                 return response;
             }
             
-            if (null == map.get("idcard") || StringUtils.isBlank(map.get("idcard"))) {
-                logger.info("证件号码为空");
-                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "证件号码为空");
-            }
+//            if (null == map.get("idcard") || StringUtils.isBlank(map.get("idcard"))) {
+//                logger.info("证件号码为空");
+//                return new HouseholdAdministrationQueryController().errorRsponse(response, 1, "证件号码为空");
+//            }
             
             RequestInfo requestInfo = getRequestInfo(request);
+            
+         // test
+//            if (StringUtils.isEmpty(requestInfo.getIdno())) {
+//                requestInfo.setIdno("410304195802212517");
+//            }
+            
             if (StringUtils.isEmpty(requestInfo.getIdno())) {
                 return ResponseHelper.createResponse(500, "身份证号码不能为空");
             }
@@ -1194,7 +1216,7 @@ public class reservedFundController extends BaseController {
             
             map.put("percode", authInfo.get("percode"));
             
-            getResponse(map, response);
+            getResponseReturn(map, response);
         } catch (Exception e) {
             logger.error("调用公积金接口异常" + e.getMessage(), e);
             response.setCode(500);
@@ -1234,5 +1256,17 @@ public class reservedFundController extends BaseController {
         jsonObj.put("4", "结清");
         jsonObj.put("0", "注销");
         return jsonObj.get(code) == null ? code : jsonObj.get(code).toString();
+    }
+    
+    //jin.ying添加洛阳公积金调取webservice共用返回接口
+    private void getResponseReturn(@RequestBody Map<String, String> map, Response<Object> response) throws Exception {
+        String reqData = RopUtil.getRequestData(map);
+        String xml = getTrader().doTrader(reqData);
+        Map result = RopUtil.xmlTOMap(xml);
+        logger.info("调用接口返回数据" + result);
+        response.setDescription(String.valueOf(result.get("resmsg")));
+        response.setCode(0);
+        response.setPayload(result);
+        
     }
 }
