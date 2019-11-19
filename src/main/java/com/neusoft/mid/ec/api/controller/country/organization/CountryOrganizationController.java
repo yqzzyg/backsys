@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.neusoft.mid.ec.api.controller.BaseController;
 import com.neusoft.mid.ec.api.domain.country.CountryOrganization;
 import com.neusoft.mid.ec.api.exception.GeneralException;
@@ -30,7 +31,6 @@ import me.puras.common.util.ClientListSlice;
 import me.puras.common.util.ListBounds;
 import me.puras.common.util.ListSlice;
 import me.puras.common.util.Pagination;
-import net.sf.json.JSONObject;
 import net.sf.json.xml.XMLSerializer;
 
 /**
@@ -1239,25 +1239,46 @@ public class CountryOrganizationController extends BaseController {
 			HttpServletResponse response) {
 		 Response<Object> object = new Response<>();
 		try {
-			if (null == params.get("comMc") ) {
-				logger.error("企业名称不能为空");
+			
+			if (null == params.get("xkzbh")&&null == params.get("comMc")) {
+				logger.error("企业名称和许可证编号不能都为空");
                 object.setCode(500);
-                object.setDescription("请输入企业名称");
+                object.setDescription("请输入许可证编号或者企业名称");
                 object.setLastUpdateTime(System.currentTimeMillis());
                 return object;
 			}
-			if (null == params.get("xkzbh") ) {
-				logger.error("许可证编号不能为空");
+			if (null == params.get("xzqh") ) {
+				logger.error("行政区划代码不能为空");
                 object.setCode(500);
-                object.setDescription("请输入许可证编号");
+                object.setDescription("请输入行政区划代码");
                 object.setLastUpdateTime(System.currentTimeMillis());
                 return object;
 			}
 			String comMc = String.valueOf(params.get("comMc"));
 			String xzqh = String.valueOf(params.get("xzqh")) ;
 			String xkzbh = String.valueOf(params.get("xkzbh"));
-			JSONArray userInfo = housingConstructionService.getC007(xzqh, xkzbh, comMc);
-			return ResponseHelper.createSuccessResponse(userInfo);
+			/*
+			 * JSONArray userInfo = housingConstructionService.getC007(xzqh, xkzbh, comMc);
+			 * return ResponseHelper.createSuccessResponse(userInfo);
+			 */
+			String urlPath = environment.getProperty("sp.hc.url.c0007");
+	        Map<String, String> tokenParam = new HashMap<>();
+	        if(StringUtils.isNotEmpty(xkzbh)&&xkzbh!="null") {
+	        	tokenParam.put("xkzbh", xkzbh);
+	        }
+	        if(StringUtils.isNotEmpty(comMc)&&comMc!="null") {
+	        	tokenParam.put("comMc", comMc);
+	        }
+	        tokenParam.put("xzqh", xzqh);
+	        //返回查询结果
+	        String resultInfo = HttpRequestUtil.URLGet(urlPath, tokenParam, "utf-8");
+	        logger.info("食品经营许可证信息查询结果："+resultInfo);
+	        if (StringUtils.isEmpty(resultInfo)) {
+                return ResponseHelper.createResponse(-9999, "查询失败，请稍候重试！");
+            }
+            JSONObject json = JSONObject.parseObject(resultInfo);
+            return ResponseHelper.createSuccessResponse(json);
+	        
 		} catch (Exception e) {
 			logger.error("食品经营许可证信息查询接口" + e.getMessage(), e);
             object.setCode(500);
@@ -1275,26 +1296,47 @@ public class CountryOrganizationController extends BaseController {
 	public Response getYpjylsgspxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
 			HttpServletResponse response) {
 		 Response<Object> object = new Response<>();
-			try {
-				if (null == params.get("comMc") ) {
-					logger.error("企业名称不能为空");
+		 try {
+				
+				if (null == params.get("xkzbh")&&null == params.get("comMc")) {
+					logger.error("企业名称和许可证编号不能都为空");
 	                object.setCode(500);
-	                object.setDescription("请输入企业名称");
+	                object.setDescription("请输入许可证编号或者企业名称");
 	                object.setLastUpdateTime(System.currentTimeMillis());
 	                return object;
 				}
-				if (null == params.get("xkzbh") ) {
-					logger.error("许可证编号不能为空");
+				if (null == params.get("xzqh") ) {
+					logger.error("行政区划代码不能为空");
 	                object.setCode(500);
-	                object.setDescription("请输入许可证编号");
+	                object.setDescription("请输入行政区划代码");
 	                object.setLastUpdateTime(System.currentTimeMillis());
 	                return object;
 				}
 				String comMc = String.valueOf(params.get("comMc"));
 				String xzqh = String.valueOf(params.get("xzqh")) ;
 				String xkzbh = String.valueOf(params.get("xkzbh"));
-				JSONArray userInfo = housingConstructionService.getC008(xzqh, xkzbh, comMc);
-				return ResponseHelper.createSuccessResponse(userInfo);
+				/*
+				 * JSONArray userInfo = housingConstructionService.getC007(xzqh, xkzbh, comMc);
+				 * return ResponseHelper.createSuccessResponse(userInfo);
+				 */
+				String urlPath = environment.getProperty("sp.hc.url.c0008");
+		        Map<String, String> tokenParam = new HashMap<>();
+		        if(StringUtils.isNotEmpty(xkzbh)&&xkzbh!="null") {
+		        	tokenParam.put("xkzbh", xkzbh);
+		        }
+		        if(StringUtils.isNotEmpty(comMc)&&comMc!="null") {
+		        	tokenParam.put("comMc", comMc);
+		        }
+		        tokenParam.put("xzqh", xzqh);
+		        //返回查询结果
+		        String resultInfo = HttpRequestUtil.URLGet(urlPath, tokenParam, "utf-8");
+		        logger.info("药品经营零售GSP许可证信息查询结果："+resultInfo);
+		        if (StringUtils.isEmpty(resultInfo)) {
+	                return ResponseHelper.createResponse(-9999, "查询失败，请稍候重试！");
+	            }
+	            JSONObject json = JSONObject.parseObject(resultInfo);
+	            return ResponseHelper.createSuccessResponse(json);
+		        
 			} catch (Exception e) {
 				logger.error("药品经营零售GSP许可证信息查询接口" + e.getMessage(), e);
 	            object.setCode(500);
@@ -1312,62 +1354,112 @@ public class CountryOrganizationController extends BaseController {
 	public Response getYpjylsxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
 			HttpServletResponse response) {
 		 Response<Object> object = new Response<>();
-		try {
-			if (null == params.get("comMc") ) {
-				logger.error("企业名称不能为空");
-                object.setCode(500);
-                object.setDescription("请输入企业名称");
-                object.setLastUpdateTime(System.currentTimeMillis());
-                return object;
+		 try {
+				
+				if (null == params.get("xkzbh")&&null == params.get("comMc")) {
+					logger.error("企业名称和许可证编号不能都为空");
+	                object.setCode(500);
+	                object.setDescription("请输入许可证编号或者企业名称");
+	                object.setLastUpdateTime(System.currentTimeMillis());
+	                return object;
+				}
+				if (null == params.get("xzqh") ) {
+					logger.error("行政区划代码不能为空");
+	                object.setCode(500);
+	                object.setDescription("请输入行政区划代码");
+	                object.setLastUpdateTime(System.currentTimeMillis());
+	                return object;
+				}
+				String comMc = String.valueOf(params.get("comMc"));
+				String xzqh = String.valueOf(params.get("xzqh")) ;
+				String xkzbh = String.valueOf(params.get("xkzbh"));
+				/*
+				 * JSONArray userInfo = housingConstructionService.getC007(xzqh, xkzbh, comMc);
+				 * return ResponseHelper.createSuccessResponse(userInfo);
+				 */
+				String urlPath = environment.getProperty("sp.hc.url.c0009");
+		        Map<String, String> tokenParam = new HashMap<>();
+		        if(StringUtils.isNotEmpty(xkzbh)&&xkzbh!="null") {
+		        	tokenParam.put("xkzbh", xkzbh);
+		        }
+		        if(StringUtils.isNotEmpty(comMc)&&comMc!="null") {
+		        	tokenParam.put("comMc", comMc);
+		        }
+		        tokenParam.put("xzqh", xzqh);
+		        //返回查询结果
+		        String resultInfo = HttpRequestUtil.URLGet(urlPath, tokenParam, "utf-8");
+		        logger.info("药品经营零售许可证信息查询结果："+resultInfo);
+		        if (StringUtils.isEmpty(resultInfo)) {
+	                return ResponseHelper.createResponse(-9999, "查询失败，请稍候重试！");
+	            }
+	            JSONObject json = JSONObject.parseObject(resultInfo);
+	            return ResponseHelper.createSuccessResponse(json);
+		        
+			} catch (Exception e) {
+				logger.error("药品经营零售许可证信息查询接口" + e.getMessage(), e);
+	            object.setCode(500);
+	            object.setDescription("内部服务错误");
+	            object.setLastUpdateTime(System.currentTimeMillis());
+	            return object ;
 			}
-			if (null == params.get("xkzbh") ) {
-				logger.error("许可证编号不能为空");
-                object.setCode(500);
-                object.setDescription("请输入许可证编号");
-                object.setLastUpdateTime(System.currentTimeMillis());
-                return object;
-			}
-			String comMc = String.valueOf(params.get("comMc"));
-			String xzqh = String.valueOf(params.get("xzqh")) ;
-			String xkzbh = String.valueOf(params.get("xkzbh"));
-			JSONArray userInfo = housingConstructionService.getC009(xzqh, xkzbh, comMc);
-			return ResponseHelper.createSuccessResponse(userInfo);
-		} catch (Exception e) {
-			logger.error("getYpjylsgspxkzxxcx接口" + e.getMessage(), e);
-            object.setCode(500);
-            object.setDescription("内部服务错误");
-            object.setLastUpdateTime(System.currentTimeMillis());
-            return object ;
-		}
 	}
 	/**
-	 * 药品生产许可证信息查询
+	 * 食品生产许可证信息查询
 	 */
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/getYpscxkzxxcx", method = RequestMethod.POST)
-	@ApiOperation("药品生产许可证信息查询接口 ")
+	@ApiOperation("食品生产许可证信息查询接口 ")
 	public Response getYpscxkzxxcx(@RequestParam Map<String, Object> params, HttpServletRequest request,
 			HttpServletResponse response) {
 		 Response<Object> object = new Response<>();
-		try {
-			if (null == params.get("SHXYDM") ) {
-				logger.error("社会信用代码不能为空");
-                object.setCode(500);
-                object.setDescription("请输入社会信用代码");
-                object.setLastUpdateTime(System.currentTimeMillis());
-                return object;
+		 try {
+				
+				if (null == params.get("xkzbh")&&null == params.get("comMc")) {
+					logger.error("企业名称和许可证编号不能都为空");
+	                object.setCode(500);
+	                object.setDescription("请输入许可证编号或者企业名称");
+	                object.setLastUpdateTime(System.currentTimeMillis());
+	                return object;
+				}
+				if (null == params.get("xzqh") ) {
+					logger.error("行政区划代码不能为空");
+	                object.setCode(500);
+	                object.setDescription("请输入行政区划代码");
+	                object.setLastUpdateTime(System.currentTimeMillis());
+	                return object;
+				}
+				String comMc = String.valueOf(params.get("comMc"));
+				String xzqh = String.valueOf(params.get("xzqh")) ;
+				String xkzbh = String.valueOf(params.get("xkzbh"));
+				/*
+				 * JSONArray userInfo = housingConstructionService.getC007(xzqh, xkzbh, comMc);
+				 * return ResponseHelper.createSuccessResponse(userInfo);
+				 */
+				String urlPath = environment.getProperty("sp.hc.url.c0010");
+		        Map<String, String> tokenParam = new HashMap<>();
+		        if(StringUtils.isNotEmpty(xkzbh)&&xkzbh!="null") {
+		        	tokenParam.put("xkzbh", xkzbh);
+		        }
+		        if(StringUtils.isNotEmpty(comMc)&&comMc!="null") {
+		        	tokenParam.put("comMc", comMc);
+		        }
+		        tokenParam.put("xzqh", xzqh);
+		        //返回查询结果
+		        String resultInfo = HttpRequestUtil.URLGet(urlPath, tokenParam, "utf-8");
+		        logger.info("食品生产许可证信息查询结果："+resultInfo);
+		        if (StringUtils.isEmpty(resultInfo)) {
+	                return ResponseHelper.createResponse(-9999, "查询失败，请稍候重试！");
+	            }
+	            JSONObject json = JSONObject.parseObject(resultInfo);
+	            return ResponseHelper.createSuccessResponse(json);
+		        
+			} catch (Exception e) {
+				logger.error("食品生产许可证信息查询接口" + e.getMessage(), e);
+	            object.setCode(500);
+	            object.setDescription("内部服务错误");
+	            object.setLastUpdateTime(System.currentTimeMillis());
+	            return object ;
 			}
-			
-			String SHXYDM = (String) params.get("SHXYDM");
-			JSONArray userInfo = housingConstructionService.getC010(SHXYDM);
-			return ResponseHelper.createSuccessResponse(userInfo);
-		} catch (Exception e) {
-			logger.error("药品生产许可证信息查询接口" + e.getMessage(), e);
-            object.setCode(500);
-            object.setDescription("内部服务错误");
-            object.setLastUpdateTime(System.currentTimeMillis());
-            return object ;
-		}
 	}
     /**
      * 根据机构名称查询机构详细信息
@@ -1432,7 +1524,7 @@ public class CountryOrganizationController extends BaseController {
   		   }else {
   			 return ResponseHelper.createResponse(-9999, "查询失败");
   		   }
-  		  net.sf.json.JSONObject resultjson =new JSONObject();
+  		  net.sf.json.JSONObject resultjson =new net.sf.json.JSONObject();
   		    if(totalCount==0) {
   		    	
   		    }else {
