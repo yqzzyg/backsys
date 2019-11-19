@@ -15,6 +15,7 @@ import org.springframework.context.annotation.PropertySources;
         @PropertySource("config/health-${spring.profiles.active}.properties"),
         @PropertySource("config/edu-${spring.profiles.active}.properties"),
         @PropertySource("config/essc-${spring.profiles.active}.properties"),
+        @PropertySource("config/ccb-${spring.profiles.active}.properties"),
         @PropertySource("config/jgQuery-${spring.profiles.active}.properties"),
         @PropertySource("config/province-${spring.profiles.active}.properties"),
         @PropertySource("config/construction-${spring.profiles.active}.properties"),

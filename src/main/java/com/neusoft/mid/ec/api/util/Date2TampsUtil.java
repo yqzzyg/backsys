@@ -7,6 +7,7 @@ public class Date2TampsUtil {
 	private static String datePattern = "yyyy-MM-dd";
 	private static String datePattern2 = "yyyyMMdd";
 	private static String timePattern2 = datePattern + " HH:mm:ss";
+	private static String datePattern3 = "yyyyMMddHHmmss";
     /** 
      * 时间戳转换成日期格式字符串 
      * @param seconds 精确到秒的字符串 
@@ -110,12 +111,16 @@ public class Date2TampsUtil {
 	public static final String date2Str2(Date aDate) {
 		return date2Str(datePattern2, aDate);
 	}
+	public static final String date2Str3(Date aDate) {
+		return date2Str(datePattern3, aDate);
+	}
 	public static final String convertDateToString(Date aDate) {
 		return getDateTime(datePattern, aDate);
 	}
 	public static final String convertDateToString2(Date aDate) {
 		return getDateTime(timePattern2, aDate);
 	}
+	
 	public static final String getDateTime(String aMask, Date aDate) {
 		SimpleDateFormat df = null;
 		String returnValue = "";

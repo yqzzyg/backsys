@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -228,47 +230,53 @@ public class EducationQueryController extends BaseController {
      * @param object
      */
     public void httpEduPost(String urlPath, Map params, HttpServletRequest request, Response<Object> object,Integer flag) {
-        //获取headers请求头数据
-        Map<String, Object> mapHeaders = getMapHeaders(request);
-        List list = new ArrayList();
-        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
-            params.put("name",mapHeaders.get("name"));
-        }
-        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
-            params.put("idno",mapHeaders.get("idno"));
-        }
-        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
-            params.put("name","ceshi");
-        }
-        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
-            params.put("idno","410000000000000000");
-        }
-        list.add(params);
-        mapHeaders.put("sign",MD5Util.MD5(JSON.toJSONString(list)+SIGN));
-        logger.info("读取到教育接口地址：" + urlPath);
-        String resultStr = HttpRequestUtil.URLPostJSONParams(urlPath, JSON.toJSONString(list), mapHeaders);
-        logger.info("调用教育接口查询到的数据：" + resultStr);
-        if (StringUtils.isNotBlank(resultStr)) {
-            JSONObject json = JSONObject.parseObject(resultStr);
-            //获取code值，如果msg为空，根据code值匹配对应的msg值
-            if (1==json.getInteger("code")) {
-                object.setDescription("请求失败");
-            }else if (0==json.getInteger("code") && "失败".equals(json.getString("msg"))) {
-                object.setDescription("查询成功");
-            }else{
-                object.setDescription(json.getString("msg"));
-            }
-            object.setCode(json.getInteger("code"));
-            json.remove("code");
-            json.remove("msg");
-            //如果回传数据成功取出data
-            object.setPayload(flag==1?json.get("content"):json);
-        } else {
-            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
-            object.setCode(500);
-            object.setDescription("内部服务错误");
-        }
-        object.setLastUpdateTime(System.currentTimeMillis());
+    	try {
+	        //获取headers请求头数据
+	        Map<String, Object> mapHeaders = getMapHeaders(request);
+	        List list = new ArrayList();
+	        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
+	        	params.put("name",URLDecoder.decode((String)mapHeaders.get("name"), "UTF-8"));
+	        }
+	        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
+	            params.put("idno",mapHeaders.get("idno"));
+	        }
+	        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
+	            params.put("name","ceshi");
+	        }
+	        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
+	            params.put("idno","410000000000000000");
+	        }
+	        list.add(params);
+	        mapHeaders.put("sign",MD5Util.MD5(JSON.toJSONString(list)+SIGN));
+	        logger.info("读取到教育接口地址：" + urlPath);
+	        String resultStr = HttpRequestUtil.URLPostJSONParams(urlPath, JSON.toJSONString(list), mapHeaders);
+	        logger.info("调用教育接口查询到的数据：" + resultStr);
+	        if (StringUtils.isNotBlank(resultStr)) {
+	            JSONObject json = JSONObject.parseObject(resultStr);
+	            //获取code值，如果msg为空，根据code值匹配对应的msg值
+	            if (1==json.getInteger("code")) {
+	                object.setDescription("请求失败");
+	            }else if (0==json.getInteger("code") && "失败".equals(json.getString("msg"))) {
+	                object.setDescription("查询成功");
+	            }else{
+	                object.setDescription(json.getString("msg"));
+	            }
+	            object.setCode(json.getInteger("code"));
+	            json.remove("code");
+	            json.remove("msg");
+	            //如果回传数据成功取出data
+	            object.setPayload(flag==1?json.get("content"):json);
+	        } else {
+	            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+	            object.setCode(500);
+	            object.setDescription("内部服务错误");
+	        }
+	        object.setLastUpdateTime(System.currentTimeMillis());
+    	} catch (Exception e) {
+			object.setCode(-1);
+			object.setDescription("请求失败");
+			object.setLastUpdateTime(System.currentTimeMillis());
+		}
     }
 
     /**
