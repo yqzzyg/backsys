@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.neusoft.mid.ec.api.controller.BaseController;
 import com.neusoft.mid.ec.api.domain.RequestInfo;
+import com.neusoft.mid.ec.api.exception.GeneralException;
 import com.neusoft.mid.ec.api.serviceInterface.householdadministration.HouseholdAdministrationApplyService;
 import com.neusoft.mid.ec.api.util.*;
 import com.neusoft.mid.ec.api.util.http.HttpRequestUtil;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.util.*;
 
 /**
@@ -136,8 +139,9 @@ public class HouseholdAdministrationQueryController extends BaseController {
      * 保安员成绩查询
      */
     @RequestMapping("/getSecurityScores")
-    public Response getSecurityScores(@RequestBody Map params, HttpServletRequest request) {
+    public Response getSecurityScores(@RequestBody Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException  {
         Response<Object> object = new Response<>();
+        verifyCode(request,response,String.valueOf(params.get("validateCode")),null);
         try {
             logger.info("调用保安员成绩查询入参" + params);
             //入参校验
@@ -181,8 +185,9 @@ public class HouseholdAdministrationQueryController extends BaseController {
      * 保安员进度查询
      */
     @RequestMapping("/getSecurityProgress")
-    public Response getSecurityProgress(@RequestBody Map params, HttpServletRequest request) {
+    public Response getSecurityProgress(@RequestBody Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
         Response<Object> object = new Response<>();
+        verifyCode(request,response,String.valueOf(params.get("validateCode")),null);
         try {
             logger.info("调用保安员进度查询入参" + params);
             //入参校验
@@ -235,8 +240,9 @@ public class HouseholdAdministrationQueryController extends BaseController {
      * 身份证办理进度查询
      */
     @RequestMapping("/getIdCardProgress")
-    public Response getIdCardProgress(@RequestBody Map params, HttpServletRequest request) {
+    public Response getIdCardProgress(@RequestBody Map params, HttpServletRequest request,HttpServletResponse response)throws GeneralException {
         Response<Object> object = new Response<>();
+        verifyCode(request,response,String.valueOf(params.get("validateCode")),null);
         try {
             logger.info("调用身份证办理进度查询入参" + params);
             //入参校验
