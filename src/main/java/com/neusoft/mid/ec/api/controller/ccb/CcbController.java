@@ -64,9 +64,9 @@ public class CcbController extends BaseController {
                 paraMap.put("CstPty_Ordr_No","");
                 paraMap.put("Fee_Itm_Prj_User_No","");
                 paraMap.put("MrchCd",environment.getProperty("CCB_MrchCd"));
-                paraMap.put("PyF_ClCd",params.get("PyF_ClCd"));
-                paraMap.put("Admn_Rgon_Cd",params.get("Admn_Rgon_Cd"));
-                paraMap.put("Fee_Itm_PyF_MtdCd",params.get("Fee_Itm_PyF_MtdCd"));
+                paraMap.put("PyF_ClCd",params.get("pyFClCd"));
+                paraMap.put("Admn_Rgon_Cd",params.get("admnRgonCd"));
+                paraMap.put("Fee_Itm_PyF_MtdCd",params.get("feeItmPyFMtdCd"));
                 paraMap.put("Usr_ID",(String)mapHeaders.get("yunzheng"));
                 paraMap.put("Cst_Nm","");
                 paraMap.put("Crdt_Tp","");
@@ -79,7 +79,7 @@ public class CcbController extends BaseController {
                 String oriParam =  map2Str(paraMap);
                 System.out.println("oriParam = "+oriParam);
                 String signInf = SHA256withRSA.sign(environment.getProperty("CCB_PRIVATE_KEY_C"), oriParam);
-                succ = SHA256withRSA.verifySign(environment.getProperty("CCB_PUBLIC_KEY_C"), oriParam, signInf);
+                /*succ = SHA256withRSA.verifySign(environment.getProperty("CCB_PUBLIC_KEY_C"), oriParam, signInf);
                 if (!succ){
         			System.out.println("验签失败");
         			signInf = SHA256withRSA.sign(environment.getProperty("CCB_PRIVATE_KEY_C"), oriParam);
@@ -88,7 +88,7 @@ public class CcbController extends BaseController {
         				rescode = 3;
         				msg = "签名错误";
         			}
-        		}
+        		}*/
                 if (succ) {
                 	String paraStr = oriParam+"&SIGN_INF="+signInf;
                     System.out.println("paraStr = "+paraStr);
@@ -101,10 +101,11 @@ public class CcbController extends BaseController {
                     String Bsn_Data = AESUtil.encrypt(paraStr, AESKEY);
                     
                     Map<String, String> ret = new HashMap<>();
-                    ret.put("Tprt_Mode", "1");
-                    ret.put("versionfalg", "2");
-                    ret.put("Tprt_Parm", Tprt_Parm);
-                    ret.put("Bsn_Data", Bsn_Data);
+                    ret.put("tprtMode", "1");
+                    ret.put("versionflag", "2");
+                    ret.put("url",environment.getProperty("CCB_URL"));
+                    ret.put("tprtParm", Tprt_Parm);
+                    ret.put("bsnData", Bsn_Data);
                     response.setPayload(ret);
                     msg = "成功";
     			}
@@ -143,12 +144,12 @@ public class CcbController extends BaseController {
     
     private boolean verifyParams(Map<String,String> params) {
     	boolean succ = false;
-    	if (params.containsKey("PyF_ClCd")&&params.containsKey("Fee_Itm_PyF_MtdCd")&&params.containsKey("Admn_Rgon_Cd")) {
-    		succ = test("\\d{5}", params.get("PyF_ClCd"));
+    	if (params.containsKey("pyFClCd")&&params.containsKey("feeItmPyFMtdCd")&&params.containsKey("admnRgonCd")) {
+    		succ = test("\\d{5}", params.get("pyFClCd"));
     		if (succ) {
-        		succ = test("0[0,1]",params.get("Fee_Itm_PyF_MtdCd"));
+        		succ = test("0[0,1]",params.get("feeItmPyFMtdCd"));
         		if (succ) {
-        			succ = test("\\d{6}",params.get("Admn_Rgon_Cd"));
+        			succ = test("\\d{6}",params.get("admnRgonCd"));
 				}
 			}
 		}
