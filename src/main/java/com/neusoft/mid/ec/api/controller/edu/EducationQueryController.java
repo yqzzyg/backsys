@@ -44,7 +44,7 @@ public class EducationQueryController extends BaseController {
     private Environment environment;
     //签名key
     private static final String SIGN = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzkWazkpkoRxo7buRLbWTzLc";
-
+    
     /**
      * 普通话成绩查询接口
      * @param params
@@ -234,20 +234,29 @@ public class EducationQueryController extends BaseController {
 	        //获取headers请求头数据
 	        Map<String, Object> mapHeaders = getMapHeaders(request);
 	        List list = new ArrayList();
-	        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
-	        	params.put("name",URLDecoder.decode((String)mapHeaders.get("name"), "UTF-8"));
+	        if(StringUtils.isBlank(params.get("sname") == null?null:params.get("sname").toString())&&
+	        		StringUtils.isBlank(params.get("rcode") == null?null:params.get("rcode").toString())) {
+		        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
+		        	params.put("name",URLDecoder.decode((String)mapHeaders.get("name"), "UTF-8"));
+		        }
+		        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
+		            params.put("idno",mapHeaders.get("idno"));
+		        }
+		        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
+		            params.put("name","ceshi");
+		        }
+		        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
+		            params.put("idno","410000000000000000");
+		        }
 	        }
-	        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
-	            params.put("idno",mapHeaders.get("idno"));
+	        if(StringUtils.isNotBlank(params.get("ysbCheckFlag")==null?null:params.get("ysbCheckFlag").toString())) {
+	        	params.remove("ysbCheckFlag");
+	        	list.add(params);
+	        	mapHeaders.put("sign",MD5Util.MD5(JSON.toJSONString(list)+"CB8E078B9175C81DEBC985DDEB708E9B54F586A536E6397876F2D9B018C533C3"));
+	        }else {
+	        	list.add(params);
+	        	mapHeaders.put("sign",MD5Util.MD5(JSON.toJSONString(list)+SIGN));
 	        }
-	        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
-	            params.put("name","ceshi");
-	        }
-	        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
-	            params.put("idno","410000000000000000");
-	        }
-	        list.add(params);
-	        mapHeaders.put("sign",MD5Util.MD5(JSON.toJSONString(list)+SIGN));
 	        logger.info("读取到教育接口地址：" + urlPath);
 	        String resultStr = HttpRequestUtil.URLPostJSONParams(urlPath, JSON.toJSONString(list), mapHeaders);
 	        logger.info("调用教育接口查询到的数据：" + resultStr);
@@ -266,6 +275,55 @@ public class EducationQueryController extends BaseController {
 	            json.remove("msg");
 	            //如果回传数据成功取出data
 	            object.setPayload(flag==1?json.get("content"):json);
+	        } else {
+	            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+	            object.setCode(500);
+	            object.setDescription("内部服务错误");
+	        }
+	        object.setLastUpdateTime(System.currentTimeMillis());
+    	} catch (Exception e) {
+			object.setCode(-1);
+			object.setDescription("请求失败");
+			object.setLastUpdateTime(System.currentTimeMillis());
+		}
+    }
+    
+    /**
+     * get查询content-type = application/json
+     *
+     * @param params
+     * @param request
+     * @param object
+     */
+    public void httpEduGet(String urlPath, Map params, HttpServletRequest request, Response<Object> object) {
+    	try {
+	        //获取headers请求头数据
+	        Map<String, Object> mapHeaders = getMapHeaders(request);
+	        if (StringUtils.isBlank(params.get("name")==null?null:params.get("name").toString())) {
+	        	params.put("name",URLDecoder.decode((String)mapHeaders.get("name"), "UTF-8"));
+	        }
+	        if (StringUtils.isBlank(params.get("idno")==null?null:params.get("idno").toString())) {
+	            params.put("idno",mapHeaders.get("idno"));
+	        }
+	        mapHeaders.put("sign",MD5Util.MD5(JSON.toJSONString(params)+SIGN));
+	        logger.info("读取到教育接口地址：" + urlPath);
+	        String resultStr = HttpRequestUtil.URLGet2(urlPath, params, "UTF-8", mapHeaders);
+	        logger.info("调用教育接口查询到的数据：" + resultStr);
+	        if (StringUtils.isNotBlank(resultStr)) {
+	            JSONObject json = JSONObject.parseObject(resultStr);
+	            //获取code值，如果msg为空，根据code值匹配对应的msg值
+	            if (1==json.getInteger("code")) {
+	                object.setDescription("请求失败");
+	            }else if (0==json.getInteger("code") && "失败".equals(json.getString("msg"))) {
+	                object.setDescription("查询成功");
+	            }else{
+	                object.setDescription(json.getString("msg"));
+	            }
+	            object.setCode(json.getInteger("code"));
+	            json.remove("code");
+	            json.remove("msg");
+	            //如果回传数据成功取出data
+	            object.setPayload(json);
 	        } else {
 	            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
 	            object.setCode(500);
@@ -491,6 +549,7 @@ public class EducationQueryController extends BaseController {
         Map<String, Object> headMap = getMapHeaders(request);
         String refererUrlPath = environment.getProperty("edu.query.url.queryPZCJ.referer");
         headMap.put("Referer", refererUrlPath);
+        Response<Object> o = doExecute2("普通高招成绩查询", urlPath, params, headMap);
         return doExecute2("普通高招成绩查询", urlPath, params, headMap);
     }
 
@@ -657,6 +716,232 @@ public class EducationQueryController extends BaseController {
         long endTime = System.currentTimeMillis();
         object.setLastUpdateTime(endTime);
         logger.info(functionName + "出参：" + object);
+        return object;
+    }
+    /**
+     * 2.7.	特岗教师笔试成绩结果查询
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/writtenTestResults", method = RequestMethod.POST)
+    public Response writtenTestResults(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师笔试成绩结果查询接口[writtenTestResults]入参" + params);
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.writtenTestResults");
+            httpEduPost(urlPath,params == null?new HashMap():params,request,object,1);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 2.8.	特岗教师面试人员名单
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/interview", method = RequestMethod.POST)
+    public Response interview(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+      //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师面试人员名单接口[interview]入参" + params);
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.interview");
+            httpEduPost(urlPath,params == null?new HashMap():params,request,object,2);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 2.9.	特岗教师面试成绩结果查询
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/interviewscore", method = RequestMethod.POST)
+    public Response interviewscore(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师面试成绩结果查询接口[interviewscore]入参" + params);
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.interviewscore");
+            httpEduPost(urlPath,params == null?new HashMap():params,request,object,1);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 2.10. 特岗教师体检人员名单
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/examination", method = RequestMethod.POST)
+    public Response examination(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师体检人员名单接口[examination]入参" + params);
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.examination");
+            httpEduPost(urlPath,params == null?new HashMap():params,request,object,2);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 2.11. 特岗教师体检结果查询
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/examinationresult", method = RequestMethod.POST)
+    public Response examinationresult(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师体检结果查询接口[examinationresult]入参" + params);
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.examinationresult");
+            httpEduPost(urlPath,params == null?new HashMap():params,request,object,1);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 2.12. 特岗教师拟聘用人员名单
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/teacherinvite", method = RequestMethod.POST)
+    public Response teacherinvite(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师拟聘用人员名单接口[teacherinvite]入参" + params);
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.teacherinvite");
+            httpEduPost(urlPath,params == null?new HashMap():params,request,object,2);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 2.14. 河南省中等职业教育学历认证查询
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/ysbCheck", method = RequestMethod.POST)
+    public Response ysbCheck(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("河南省中等职业教育学历认证查询接口[ysbCheck]入参" + params);
+            params.put("ysbCheckFlag", "1");
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.ysb");
+            httpEduPost(urlPath,params == null?new HashMap():params,request,object,1);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 3.2.	特岗教师人员名单公用接口：获取县区编码（特岗教师）
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/county", method = RequestMethod.POST)
+	public Response county(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师人员名单公用接口：获取县区编码（特岗教师）接口[county]入参" + "");
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.county");
+            httpEduGet(urlPath, params == null?new HashMap():params, request, object);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", "");
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
+        return object;
+    }
+    /**
+     * 3.3.	特岗教师人员名单公用接口：获取学科编码（特岗教师）
+     * @param params
+     * @param request
+     * @param response
+     * @return
+     * @throws GeneralException
+     */
+    @RequestMapping(value = "/subject", method = RequestMethod.POST)
+    public Response subject(@RequestBody(required=false) Map params, HttpServletRequest request,HttpServletResponse response) throws GeneralException {
+        Response<Object> object = new Response<>();
+        //验证码验证
+//        verifyCode(request,response,String.valueOf(params.get("validateCode")),"page");
+        try {
+            logger.info("特岗教师人员名单公用接口：获取学科编码（特岗教师）接口[subject]入参" + params);
+            //获取配置文件中的 url地址
+            String urlPath = environment.getProperty("edu.query.url.subject");
+            httpEduGet(urlPath, params == null?new HashMap():params, request, object);
+        } catch (Exception e) {
+            logger.info("调用教育接口异常返回值为空,入参为：[{}]", params);
+            object.setCode(500);
+            object.setDescription("内部服务错误");
+        }
         return object;
     }
 }

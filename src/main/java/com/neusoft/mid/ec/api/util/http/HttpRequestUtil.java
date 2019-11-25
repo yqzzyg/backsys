@@ -400,6 +400,61 @@ public class HttpRequestUtil {
 		return response;
 	}
 	/**
+	 * GET方式提交数据2
+	 * application/json
+	 * @param url
+	 * @param params
+	 * @param enc
+	 */
+	public static String URLGet2(String url, Map<String, String> params, String enc,Map<String, Object> headParams) {
+        logger.info("URLGet>>>url>>>" + url + ">>>params>>>" + params + ">>>enc>>>" + enc+ ">>>headParams>>>" + headParams);
+        String response = EMPTY;
+		GetMethod getMethod = null;
+		StringBuffer strtTotalURL = new StringBuffer(EMPTY);
+		if (strtTotalURL.indexOf("?") == -1) {
+			strtTotalURL.append(url).append("?").append(getUrl(params, enc));
+		} else {
+			strtTotalURL.append(url).append("&").append(getUrl(params, enc));
+		}
+		logger.info("GET请求URL = \n" + strtTotalURL.toString());
+		try {
+			getMethod = new GetMethod(strtTotalURL.toString());
+			getMethod.setRequestHeader("Content-Type", "application/json;charset=" + enc);
+			if (headParams != null && !headParams.isEmpty()) {
+				Set<String> headKeySet = headParams.keySet();
+				for (String key : headKeySet) {
+					Object value = headParams.get(key);
+					getMethod.setRequestHeader(key, String.valueOf(value));
+				}
+			}
+			// 执行getMethod
+			int statusCode = client.executeMethod(getMethod);
+			if (statusCode == HttpStatus.SC_OK) {
+				InputStream is = getMethod.getResponseBodyAsStream();
+				BufferedReader br = new BufferedReader(new InputStreamReader(is));
+				StringBuffer sb = new StringBuffer();
+				String result = "";
+				while ((result = br.readLine()) != null) {
+					sb.append(result);
+				}
+				response = sb.toString();
+				logger.info("响应码={},响应结果={}",statusCode,sb.toString());
+			} else {
+				logger.debug("响应状态码 = " + getMethod.getStatusCode());
+			}
+		} catch (HttpException e) {
+			logger.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
+		} catch (IOException e) {
+			logger.error("发生网络异常", e);
+		} finally {
+			if (getMethod != null) {
+				getMethod.releaseConnection();
+				getMethod = null;
+			}
+		}
+		return response;
+	}
+	/**
 	 * 据Map生成URL字符串
 	 * 
 	 * @param map
