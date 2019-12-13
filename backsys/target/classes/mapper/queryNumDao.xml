@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dr.backsys.dao.QueryNumDao">
+    <resultMap id="getnewuser" type="com.dr.backsys.entity.QueryNewUser">
+        <result property="area" column="area"></result>
+        <result property="num" column="num"></result>
+
+    </resultMap>
+    <select id="queryNewUsers" resultMap="getnewuser">
+
+       SELECT
+          CASE LEFT(idno,4)
+            WHEN '4101' THEN 'zhengzhou'
+            WHEN '4124' THEN 'zhengzhou'
+            WHEN '4100' THEN 'zhengzhou'
+
+            WHEN '4102' THEN 'kaifeng'
+            WHEN '4122' THEN 'kaifeng'
+
+            WHEN '4103' THEN 'luoyang'
+            WHEN '4126' THEN 'luoyang'
+
+            WHEN '4104' THEN 'pingdingshan'
+            WHEN '4132' THEN 'pingdingshan'
+
+            WHEN '4105' THEN 'anyang'
+
+            WHEN '4106' THEN 'hebi'
+
+            WHEN '4107' THEN 'xinxiang'
+
+            WHEN '4108' THEN 'jiaozuo'
+
+            WHEN '4109' THEN 'puyang'
+
+            WHEN '4110' THEN 'xvchang'
+
+            WHEN '4111' THEN 'luohe'
+
+            WHEN '4112' THEN 'sanmenxia'
+            WHEN '4125' THEN 'sanmenxia'
+
+            WHEN '4113' THEN 'nanyang'
+            WHEN '4129' THEN 'nanyang'
+
+            WHEN '4114' THEN 'shangqiu'
+            WHEN '4123' THEN 'shangqiu'
+
+            WHEN '4115' THEN 'xinyang'
+            WHEN '4130' THEN 'xinyang'
+
+            WHEN '4116' THEN 'zhoukou'
+            WHEN '4127' THEN 'zhoukou'
+
+            WHEN '4117' THEN 'zhumadian'
+            WHEN '4128' THEN 'zhumadian'
+
+            WHEN '4190' THEN 'jiyuan'
+            else '未知'
+            END AS area,
+            COUNT(*) as num
+        FROM member_sc410000
+        WHERE
+        (create_date BETWEEN #{beginTime} AND #{endTime})  and LEFT(idno,2)='41' AND yunid IS NOT NULL
+        GROUP By area;
+    </select>
+</mapper>

@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c0c34cf6-555c-45b1-963c-5cb56130b7bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_9_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_9_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_9_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_9_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_3_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_2_0_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_9_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_9_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_0_17_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_3_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_2_23_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_autoconfigure_2_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_starter_2_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_1_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_6_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backsys.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/BacksysApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/config/PropertiesConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/controller/QueryNewUsersController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/dao/QueryNumDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/entity/QueryNewUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/exception/GlobalExceptionResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/exception/MyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/service/QueryAdressService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/service/impl/QueryAdressServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/utils/JsonResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/utils/JsonResultUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/utils/dateUtil/DateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/utils/idnoToArea/NativePlace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dr/backsys/utils/idnoToArea/TestPlace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config/HNczrk.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/queryNumDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/BacksysApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/config/PropertiesConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/controller/QueryNewUsersController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/dao/QueryNumDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/entity/QueryNewUser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/exception/GlobalExceptionResolver.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/exception/MyException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/service/QueryAdressService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/service/impl/QueryAdressServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/utils/JsonResult.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/utils/JsonResultUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/utils/dateUtil/DateUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/utils/idnoToArea/NativePlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/dr/backsys/utils/idnoToArea/TestPlace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/config/HNczrk.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/queryNumDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitee/ISSUE_TEMPLATE.zh-CN.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitee/PULL_REQUEST_TEMPLATE.zh-CN.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.settings/org.eclipse.jdt.apt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.settings/org.eclipse.m2e.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.settings/org.springframework.ide.eclipse.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.en.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/encrypt_sdk.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logs/gov_api/api.2019-11-02.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/ErrorConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/Get_IPv6.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/AuthFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/AuthInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/MqConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/PropertiesConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/RedisProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/RocketMQInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/WebMvcConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/WhiteIPConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/WhiteIPInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/config/token.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/BaseController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/assess/AssessQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/ccb/CcbController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/civiladministration/CivilAdministrationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/assess/CountryAssessQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/civiladministration/CountryCivilAdministrationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/edu/CountryEducationQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/householdadministration/CountryHouseholdAdministrationQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/housingconstruction/CountryHousingConstructionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/organization/CountryOrganizationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/socialsecurity/CountryEmploymentQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/socialsecurity/CountrySocialSecurityCardQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/socialsecurity/CountrySocialSecurityQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/country/tax/CountryTaxController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/edu/EducationApplyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/edu/EducationQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/essc/EsscController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/health/ChildrenHealthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/health/HealthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/householdadministration/HouseholdAdministrationApplyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/householdadministration/HouseholdAdministrationQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/housingconstruction/HousingConstructionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/judicial/JudicialApplyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/judicial/JudicialQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/judicial/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/reservedFund/ProvinceReservedFundController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/reservedFund/reservedFundController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/socialsecurity/BiometricAuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/socialsecurity/EmploymentApplyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/socialsecurity/EmploymentQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/socialsecurity/SocialSecurityApplyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/socialsecurity/SocialSecurityCardApplyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/socialsecurity/SocialSecurityCardQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/socialsecurity/SocialSecurityQueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/tax/TaxController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/travel/TravelController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/userlog/UserLogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/controller/verify/VerifyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/DepartmentDict.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/Education.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/InterfaceDict.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/RequestInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/ReservedFundDict.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/UserLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/country/CountryOrganization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/essc/HnesscSigninfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/reservedFund/DoTrader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/reservedFund/DoTraderResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/socialsecurity/CardUserInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/domain/socialsecurity/ReportLossInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/exception/GeneralException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/exception/JacksonDecoderException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/exception/JacksonDeserializeException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/exception/JacksonEncoderException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/exception/JacksonSerializeException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/listener/MqListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/listener/RocketMQListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/security/DigestStringFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/security/DigestStringRealm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/security/DigestStringToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/security/ForbiddenFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/security/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookDept/BookDeptService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookDept/BookDeptServicePortType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookDept/GetDeptInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookDept/GetDeptInfoResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookDept/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookDept/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookTime/BookTimeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookTime/BookTimeServicePortType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookTime/GetBookTime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookTime/GetBookTimeResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookTime/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/BookTime/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/CancelBook/CancelBook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/CancelBook/CancelBookMarryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/CancelBook/CancelBookMarryServicePortType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/CancelBook/CancelBookResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/CancelBook/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/CancelBook/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/CivilAdministrationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/MaryyBook/MaryyBookService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/MaryyBook/MaryyBookServicePortType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/MaryyBook/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/MaryyBook/SaveBookMarryInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/MaryyBook/SaveBookMarryInfoResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/MaryyBook/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/QueryBook/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/QueryBook/QueryBookMarryInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/QueryBook/QueryBookMarryInfoResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/QueryBook/QueryBookMarryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/QueryBook/QueryBookMarryServicePortType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/civiladministration/QueryBook/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/country/organization/CountryOrganizationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/country/organization/CountryOrganizationRepository.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/country/organization/CountryOrganizationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/country/socialsecurity/CountryEmploymentQueryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/edu/EducationApplyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/edu/EducationQueryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/essc/EsscServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/essc/EsscServiceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/essc/EsscServiceRepository.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/health/HealthServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/householdadministration/HouseholdAdministrationApplyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/householdadministration/HouseholdAdministrationQueryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/housingconstruction/HousingConstructionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/judicial/JudicialApplyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/judicial/JudicialQueryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfound/ProvinceReservedFoundServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfound/ReservedFoundServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfound/ReservedFundRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfound/ReservedFundRepository.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfunddict/ReservedFundDictRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfunddict/ReservedFundDictRepository.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfunddict/ReservedFundDictServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/reservedfunddict/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/socialsecurity/EmploymentApplyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/socialsecurity/EmploymentQueryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/socialsecurity/SocialSecurityApplyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/socialsecurity/SocialSecurityCardApplyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/socialsecurity/SocialSecurityCardQueryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/socialsecurity/SocialSecurityQueryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/tax/TaxServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/travel/TravelServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/user/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/user/UserRepository.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/user/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/userlog/UserLogRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/userlog/UserLogRepository.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/userlog/UserLogServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/service/userlog/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/civiladministration/CivilAdministrationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/country/organization/CountryOrganizationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/country/socialsecurity/CountryEmploymentQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/edu/EducationApplyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/edu/EducationQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/essc/EsscService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/health/HealthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/householdadministration/HouseholdAdministrationApplyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/householdadministration/HouseholdAdministrationQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/housingconstruction/HousingConstructionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/judicial/JudicialApplyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/judicial/JudicialQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/reservedFund/TraderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/reservedfound/ProvinceReservedFoundService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/reservedfound/ReservedFoundService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/reservedfunddict/ReservedFundDictService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/socialsecurity/EmploymentApplyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/socialsecurity/EmploymentQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/socialsecurity/SocialSecurityApplyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/socialsecurity/SocialSecurityCardApplyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/socialsecurity/SocialSecurityCardQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/socialsecurity/SocialSecurityQueryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/tax/TaxService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/travel/TravelService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/user/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/serviceInterface/userlog/UserLogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/shareplatform/ServiceInvocation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/shareplatform/SymmetricEncoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/ASEPlus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/Base64ImgUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/DataServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/DataUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/Date2TampsUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/DesUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/EncodeUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/ExcelUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/FileQuartz.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/FileUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/FtpTool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/GetIPAddress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/ImageUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/JacksonUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/JedisClusterUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/MD5Util.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/MapRemoveNullUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/MyX509TrustManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/PasswordUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/PicCompressUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/RandomUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/RandomValidateCodeUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/RocketMQSendUitl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/RopUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/SM4Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/SendMQMsgUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/StringUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/TableNameUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/TokenHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/UUIDGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/ValidateUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/XmlJsonUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/ccbRypto/AESUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/ccbRypto/RSAUtilV2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/ccbRypto/SHA256withRSA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/http/HttpRequestUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/http/WebServiceClientUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/rypto/AESUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/neusoft/mid/ec/api/util/rypto/RSAUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/application-prd.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/assess-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/assess-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ccb-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ccb-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/civilAdministration-area.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/civilAdministration-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/civilAdministration-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/construction-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/construction-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/edu-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/edu-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/employment-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/employment-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/essc-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/essc-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/health-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/health-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/householdAdministration-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/householdAdministration-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/jgQuery-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/jgQuery-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/judicial-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/judicial-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/province-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/province-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/reservedFound-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/reservedFound-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/reservedfund_luoyang.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/socialSecurity-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/socialSecurity-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/socialSecurityCard-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/socialSecurityCard-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ssc/117.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ssc/98.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ssc/ReportLossInfo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ssc/allDsjk.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ssc/changeUserInfo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ssc/getCard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/ssc/getCardBasicInfo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/sys_code.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/tax-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/tax-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/travel-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/config/travel-prd.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/messages/messages_zh_CN.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/public/check.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/public/check2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/public/html/check.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/public/html/check2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/403.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/userInfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/userInfoAdd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/com/neusoft/mid/ec/api/service/RedisTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/clean-all.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/install-all-modules.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/release-all-modules.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/startup-dev-cloud.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/startup-dev.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/startup-int-cloud.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/startup.bat" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../mavens/apache-maven-3.5.2" />
+        <option name="userSettingsFile" value="C:\MyData\Code\mavens\apache-maven-3.5.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1UsfdPmlDgVFolT4ynmxvJjjHzF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/dr/backsys/exception" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.dr.backsys" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.dr.backsys.config" />
+      <recent name="com.dr.backsys.backsys.entity" />
+      <recent name="com.dr.backsys.backsys.dao" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\MyData\Code\CodeWorkSpace\work\backsys\src\main\java\com\dr\backsys\exception" />
+      <recent name="C:\MyData\Code\CodeWorkSpace\work\backsys\src\main\resources" />
+      <recent name="C:\MyData\Code\CodeWorkSpace\work\backsys\src\main\resources\mapper" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BacksysApplication">
+    <configuration name="TestPlace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dr.backsys.utils.idnoToArea.TestPlace" />
+      <module name="backsys" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dr.backsys.utils.idnoToArea.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BacksysApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="backsys" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dr.backsys.BacksysApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestPlace" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0c34cf6-555c-45b1-963c-5cb56130b7bf" name="Default Changelist" comment="" />
+      <created>1576150309096</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576150309096</updated>
+      <workItem from="1576150313309" duration="850000" />
+      <workItem from="1576151214411" duration="1958000" />
+      <workItem from="1576199304508" duration="12045000" />
+      <workItem from="1576217379211" duration="173000" />
+      <workItem from="1576222909547" duration="8066000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1576199974559">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1576199974559" />
+    <state x="792" y="374" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1576199157746">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="792" y="374" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.834@0.0.1536.834" timestamp="1576199157746" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1576227522987">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1576227522987" />
+    <state width="1493" height="200" key="GridCell.Tab.0.bottom" timestamp="1576231464645">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1576231464645" />
+    <state width="1493" height="200" key="GridCell.Tab.0.center" timestamp="1576231464645">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1576231464645" />
+    <state width="1493" height="200" key="GridCell.Tab.0.left" timestamp="1576231464645">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1576231464645" />
+    <state width="1493" height="200" key="GridCell.Tab.0.right" timestamp="1576231464645">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1576231464645" />
+    <state width="1493" height="200" key="GridCell.Tab.1.bottom" timestamp="1576231464646">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1576231464646" />
+    <state width="1493" height="200" key="GridCell.Tab.1.center" timestamp="1576231464645">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1576231464645" />
+    <state width="1493" height="200" key="GridCell.Tab.1.left" timestamp="1576231464645">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1576231464645" />
+    <state width="1493" height="200" key="GridCell.Tab.1.right" timestamp="1576231464645">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1576231464645" />
+    <state width="1493" height="200" key="GridCell.Tab.2.bottom" timestamp="1576231464646">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1576231464646" />
+    <state width="1493" height="200" key="GridCell.Tab.2.center" timestamp="1576231464646">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1576231464646" />
+    <state width="1493" height="200" key="GridCell.Tab.2.left" timestamp="1576231464646">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1576231464646" />
+    <state width="1493" height="200" key="GridCell.Tab.2.right" timestamp="1576231464646">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="200" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1576231464646" />
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1576225940253">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="299" y="72" key="Maven.ArtifactSearchDialog/0.0.1536.834@0.0.1536.834" timestamp="1576225940253" />
+    <state x="463" y="154" width="609" height="526" key="find.popup" timestamp="1576200744056">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="463" y="154" width="609" height="526" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1576200744056" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1576224416809">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1576224416809" />
+  </component>
+</project>
